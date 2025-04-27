@@ -1,0 +1,10 @@
+algoritmo_flujo=EQUIDAD
+algoritmo_calendarizacion=FCFS
+largo_calle=100
+velocidad_carros=10
+cantidad_carros=10
+tiempo_cambio_letrero=5
+w=3
+usar_teclado=false
+tiempo_maximo_cruce_emergencia = 10
+archivo_configuracion=config.txt
