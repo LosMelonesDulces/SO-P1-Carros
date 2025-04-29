@@ -6,62 +6,14 @@
 #include <stdbool.h>
 #include <signal.h>
 #include <errno.h>
+#include "struct&enum.h"
+#include "algoritmos_calendarizacion.h"
+#include "CEthread.h"
 
-// Definiciones para la configuración de la simulación
-#define MAX_CARROS 100
-#define MAX_NOMBRE_ARCHIVO 256
 
-// Enumeraciones para mayor claridad
-typedef enum {
-    FCFS,       // Primero en llegar, primero en ser servido
-    RR,         // Round Robin
-    PRIORIDAD,  // Prioridad
-    SJF,        // Shortest Job First (el "carro" con menor tiempo de cruce)
-    TIEMPO_REAL // Tiempo real
-} AlgoritmoCalendarizacion;
 
-typedef enum {
-    EQUIDAD,    // Equidad (W carros de cada lado)
-    LETRERO,    // Letrero (cambio de dirección)
-    FIFO        // Primero en llegar, primero en ser servido (sin control de flujo)
-} AlgoritmoFlujo;
 
-typedef enum {
-    NORMAL,
-    DEPORTIVO,
-    EMERGENCIA
-} TipoCarro;
 
-// Estructuras para manejar los datos de los hilos y la simulación
-typedef struct {
-    pthread_t hilo;
-    int id;
-    TipoCarro tipo;
-    int prioridad;      // Para el algoritmo de prioridad
-    int tiempo_cruce;  // Para el algoritmo SJF
-    int lado;           // 0: gcc cethreads.c -o cethreads -lpthreadizquierda, 1: derecha
-    int tiempo_maximo; //Para tiempo real
-} Carro;
-
-typedef struct {
-    Carro carros[MAX_CARROS];
-    int cantidad;
-    pthread_mutex_t mutex; // Mutex para proteger el acceso a la cola
-} ColaCarros;
-
-// Estructura para los parámetros de la simulación
-typedef struct {
-    AlgoritmoFlujo algoritmo_flujo;
-    AlgoritmoCalendarizacion algoritmo_calendarizacion;
-    int largo_calle;
-    int velocidad_carros;
-    int cantidad_carros;
-    int tiempo_cambio_letrero; // Para el algoritmo de letrero
-    int w;                   // Para el algoritmo de equidad
-    char archivo_configuracion[MAX_NOMBRE_ARCHIVO];
-    bool usar_teclado;
-    int tiempo_maximo_cruce_emergencia; // Tiempo máximo para carros de emergencia
-} Configuracion;
 
 // Variables globales
 ColaCarros cola_izquierda;
@@ -74,93 +26,7 @@ bool fin_simulacion = false;
 pthread_mutex_t mutex_fin_simulacion;
 pthread_cond_t cond_fin_simulacion;
 
-// Funciones de la biblioteca CEThreads (reimplementadas)
-int CEthread_create(pthread_t *hilo, const pthread_attr_t *attr, void *(*start_routine)(void *), void *arg) {
-    return pthread_create(hilo, attr, start_routine, arg);
-}
 
-int CEthread_join(pthread_t hilo, void **retval) {
-    return pthread_join(hilo, retval);
-}
-
-int CEmutex_init(pthread_mutex_t *mutex, const pthread_mutexattr_t *attr) {
-    return pthread_mutex_init(mutex, attr);
-}
-
-int CEmutex_destroy(pthread_mutex_t *mutex) {
-    return pthread_mutex_destroy(mutex);
-}
-
-int CEmutex_lock(pthread_mutex_t *mutex){
-    int result;
-    while((result = pthread_mutex_lock(mutex)) == EINTR);
-    return result;
-}
-
-int CEmutex_unlock(pthread_mutex_t *mutex) {
-    return pthread_mutex_unlock(mutex);
-}
-
-// Funciones para los algoritmos de calendarización
-int comparar_carros_fcfs(const void *a, const void *b) {
-    // FCFS: El orden de llegada determina la prioridad.  No necesitamos tiempos aquí, solo un ID o tiempo de creación.
-    const Carro *carro_a = (const Carro *)a;
-    const Carro *carro_b = (const Carro *)b;
-    return carro_a->id - carro_b->id; // Suponemos que 'id' se asigna en orden de llegada.
-}
-
-int comparar_carros_rr(const void *a, const void *b) {
-    // RR: No hay prioridad inherente.  Se maneja en la lógica de la simulación.
-    return 0; // Los carros se atienden en orden de llegada, por turnos.
-}
-
-int comparar_carros_prioridad(const void *a, const void *b) {
-    const Carro *carro_a = (const Carro *)a;
-    const Carro *carro_b = (const Carro *)b;
-    return carro_a->prioridad - carro_b->prioridad;
-}
-
-int comparar_carros_sjf(const void *a, const void *b) {
-    const Carro *carro_a = (const Carro *)a;
-    const Carro *carro_b = (const Carro *)b;
-    return carro_a->tiempo_cruce - carro_b->tiempo_cruce;
-}
-
-int comparar_carros_tiempo_real(const void *a, const void *b){
-    const Carro *carro_a = (const Carro*)a;
-    const Carro *carro_b = (const Carro*)b;
-    if(carro_a->tipo == EMERGENCIA && carro_b->tipo != EMERGENCIA){
-        return -1; // a tiene mayor prioridad
-    } else if (carro_a->tipo != EMERGENCIA && carro_b->tipo == EMERGENCIA){
-        return 1; // b tiene mayor prioridad.
-    } else {
-        return carro_a->tiempo_maximo - carro_b->tiempo_maximo;
-    }
-}
-
-// Función para ordenar la cola de carros según el algoritmo de calendarización
-void ordenar_cola(ColaCarros *cola) {
-    switch (configuracion.algoritmo_calendarizacion) {
-        case FCFS:
-            qsort(cola->carros, cola->cantidad, sizeof(Carro), comparar_carros_fcfs);
-            break;
-        case RR:
-            // No se necesita ordenar, se maneja en la lógica de la simulación.
-            break;
-        case PRIORIDAD:
-            qsort(cola->carros, cola->cantidad, sizeof(Carro), comparar_carros_prioridad);
-            break;
-        case SJF:
-            qsort(cola->carros, cola->cantidad, sizeof(Carro), comparar_carros_sjf);
-            break;
-        case TIEMPO_REAL:
-            qsort(cola->carros, cola->cantidad, sizeof(Carro), comparar_carros_tiempo_real);
-            break;
-        default:
-            fprintf(stderr, "Error: Algoritmo de calendarización no válido.\n");
-            break;
-    }
-}
 
 // Función para simular el cruce de un carro
 void *cruzar_calle(void *arg) {
