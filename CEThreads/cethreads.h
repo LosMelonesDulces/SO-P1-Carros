@@ -1,3 +1,6 @@
+#ifndef CETHREADS_H
+#define CETHREADS_H
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -14,13 +17,12 @@ extern "C" {
 #define MAX_THREADS 50
 #define THREAD_STACK (1024*1024)
 
-int mutex = 0;
-
-static int currentCEThread = -1;
-static int activeThreads = 0;
-static int inCEThread = 0;
-
-static ucontext_t mainContext;
+// Declaramos las variables como externas
+extern int mutex;
+extern int currentCEThread;
+extern int activeThreads;
+extern int inCEThread;
+extern ucontext_t mainContext;
 
 typedef struct {
     ucontext_t context;
@@ -30,13 +32,13 @@ typedef struct {
     double pause;
 } cethread;
 
-static cethread cethreadList[MAX_THREADS];
+extern cethread cethreadList[MAX_THREADS];
 
 void initCEThreads();
 int getValidID();
 int CEThread_create(void (*func)(void*), void *arg);
-static void simpleThreadWrapper(void (*func)(void));
-static void threadWrapper(void (*func)(void *), void *arg);
+void simpleThreadWrapper(void (*func)(void));  // Removido 'static'
+void threadWrapper(void (*func)(void *), void *arg);  // Removido 'static'
 int CEThreadEnd();
 void CEThread_forceEnd(int id);
 void CEThread_yield();
@@ -46,8 +48,10 @@ int SetContext(int i);
 void CEmutex_init();
 void CEmutex_destroy();
 void CEmutex_unlock();
-void CEmmutex_trylock();
+void CEmutex_trylock();
 
 #ifdef __cplusplus
 }
 #endif
+
+#endif /* CETHREADS_H */

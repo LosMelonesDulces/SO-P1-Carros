@@ -1,5 +1,12 @@
 #include "cethreads.h"
 
+int mutex = 0;
+int currentCEThread = -1;
+int activeThreads = 0;
+int inCEThread = 0;
+ucontext_t mainContext;
+cethread cethreadList[MAX_THREADS];
+
 void initCEThreads()
 {
     for (int i = 0; i < MAX_THREADS; i++)
@@ -17,6 +24,7 @@ int getValidID()
             if(cethreadList[i].active == 0) return i;
         }
     }
+    return -1;
 }
 
 int CEThread_create(void (*func)(void *), void *arg)
@@ -121,17 +129,15 @@ int CEThread_join(int id)
 {
     for (int i = 0; i <= activeThreads; i++)
     {
-        if (cethreadList[i].id == id) {}
+        if (cethreadList[i].id == id)
         {
             while (cethreadList[i].active)
             {
                 CEThread_yield();
             }
-            
         }
-        
     }
-    
+    return 0;
 }
 
 int CEThread_wait()
@@ -181,16 +187,16 @@ void CEmutex_unlock()
     return;
 }
 
-void CEmmutex_trylock()
+void CEmutex_trylock()
 {
     mutex = 0;
     if(mutex == 0) {
-        mutex == 1;
+        mutex = 1;
     } else {
         while (mutex == 1)
         {
             usleep(100);
-            CEmmutex_trylock();
+            CEmutex_trylock();
         }
     }
     return;
