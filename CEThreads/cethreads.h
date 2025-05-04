@@ -18,7 +18,7 @@ extern "C" {
 #define THREAD_STACK (1024*1024)
 
 // Declaramos las variables como externas
-extern int mutex;
+//extern int mutex;
 extern int currentCEThread;
 extern int activeThreads;
 extern int inCEThread;
@@ -104,7 +104,7 @@ int SetContext(int i);
 /**
  * @brief Inicia el mutex.
  */
-void CEmutex_init();
+int CEmutex_lock(int* mutex);
 
 /**
  * @brief Destruye el mutex.
@@ -114,7 +114,7 @@ void CEmutex_destroy();
 /**
  * @brief Desbloquea el mutex
  */
-void CEmutex_unlock();
+void CEmutex_unlock(int* mutex);
 
 /**
  * @brief Intenta bloquear el mutex

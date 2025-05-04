@@ -170,10 +170,18 @@ int SetContext(int i)
     return 1;
 }
 
-void CEmutex_init()
+int CEmutex_lock(int *mutex)
 {
-    mutex = 0;
-    return;
+    if(*mutex == 0) {
+        *mutex = 1;
+    } else {
+        while (*mutex == 1)
+        {
+            usleep(100);
+        }
+        *mutex = 1;
+    }
+    return 0;
 }
 
 void CEmutex_destroy()
@@ -181,9 +189,9 @@ void CEmutex_destroy()
     return;
 }
 
-void CEmutex_unlock()
+void CEmutex_unlock(int *mutex)
 {
-    mutex = 0;
+    *mutex = 0;
     return;
 }
 

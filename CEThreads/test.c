@@ -1,32 +1,34 @@
 #include "cethreads.h"
 
 int i = 2;
-int fact = 1;
+int fact = 10;
 int n = 10;
+int mutex0 = 0;
 
 void factorial() {
     while (i <= n) {
+        CEmutex_lock(&mutex0);
         fact *= i;
         printf("Factorial(%d) = %d\n", i, fact);
         i++;
-        CEmutex_unlock();
+        CEmutex_unlock(&mutex0);
         sleep(1);
         CEThread_yield();
     }
 }
 
 void restart() {
-    CEmutex_trylock();
+    CEmutex_lock(&mutex0);
     i = 2;
     fact = 1;
     n = 10;
     printf("i: %d  fact: %d  n: %d\n", i, fact, n);
-    CEmutex_unlock();
+    CEmutex_unlock(&mutex0);
 }
 
 int main(){
     initCEThreads();
-    CEmutex_init();
+    //CEmutex_lock(mutex0);
 
     srand(time(0));
 
