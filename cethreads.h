@@ -17,6 +17,22 @@ extern "C" {
 #define MAX_THREADS 50
 #define THREAD_STACK (1024*1024)
 
+// En cethreads.h (o donde definas tus estructuras)
+#define MAX_WAITING_THREADS MAX_THREADS // O un límite adecuado
+
+typedef struct {
+    int waiting_threads[MAX_WAITING_THREADS]; // IDs de los hilos esperando
+    int wait_count; // Número de hilos esperando
+    // Podrías usar una estructura de datos más dinámica como una lista enlazada
+    // si MAX_THREADS es muy grande o variable.
+} CEThread_cond_t;
+
+// Funciones necesarias (declaraciones en .h)
+void CEThread_cond_init(CEThread_cond_t *cond);
+void CEThread_cond_wait(CEThread_cond_t *cond, int *mutex);
+void CEThread_cond_signal(CEThread_cond_t *cond);
+void CEThread_cond_broadcast(CEThread_cond_t *cond);
+
 // Declaramos las variables como externas
 //extern int mutex;
 extern int currentCEThread;
@@ -30,6 +46,7 @@ typedef struct {
     int active;
     clock_t time;
     double pause;
+    int waiting_on_cond;
 } cethread;
 
 extern cethread cethreadList[MAX_THREADS];

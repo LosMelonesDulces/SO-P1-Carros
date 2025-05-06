@@ -11,11 +11,14 @@ extern ColaCarros cola_izquierda;
 extern ColaCarros cola_derecha;
 extern Configuracion configuracion;
 extern int calle_ocupada;
-extern pthread_mutex_t mutex_calle;
+//extern pthread_mutex_t mutex_calle;
+extern int* mutex_calle;
 extern int letrero_direccion;
 extern bool fin_simulacion;
-extern pthread_mutex_t mutex_fin_simulacion;
+//extern pthread_mutex_t mutex_fin_simulacion;
+extern int* mutex_fin_simulacion;
 extern pthread_cond_t cond_fin_simulacion;
+int h;
 
 // Función para simular el cruce de un carro
 void *cruzar_calle(void *arg) {
@@ -42,7 +45,8 @@ void *cruzar_calle(void *arg) {
     sleep(tiempo_cruce);
     printf("Carro %d (Tipo: %d, Lado: %d) ha cruzado la calle.\n", carro->id, carro->tipo, carro->lado);
 
-    pthread_exit(NULL);
+    //pthread_exit(NULL);
+    CEThreadEnd();
 }
 
 // Función para manejar la lógica de la simulación
@@ -52,11 +56,11 @@ void *simulacion(void *arg) {
     int direccion = 0; // 0: izquierda, 1: derecha
     bool calle_libre = true;
     Carro carro_actual;
-
     while (true) {
         // Verificar si la simulación debe terminar
         CEmutex_lock(&mutex_fin_simulacion);
         if (fin_simulacion) {
+            printf("si llego aqui\n");
             CEmutex_unlock(&mutex_fin_simulacion);
             break;
         }
@@ -83,8 +87,10 @@ void *simulacion(void *arg) {
                             calle_ocupada = 1; // 1 para izquierda
                             CEmutex_unlock(&mutex_calle);
                             // Crear el hilo para el carro
-                            CEthread_create(&carro_actual.hilo, NULL, cruzar_calle, &carro_actual);
-                            CEthread_join(carro_actual.hilo, NULL); // Esperar a que el carro cruce
+                            //CEthread_create(&carro_actual.hilo, NULL, cruzar_calle, &carro_actual);
+                            carro_actual.hilo=CEThread_create(&cruzar_calle,NULL);
+                            //CEthread_join(carro_actual.hilo, NULL); // Esperar a que el carro cruce
+                            CEThread_join(carro_actual.hilo);
 
                             // Liberar la calle
                             CEmutex_lock(&mutex_calle);
@@ -112,8 +118,10 @@ void *simulacion(void *arg) {
                             CEmutex_unlock(&mutex_calle);
 
                             // Crear el hilo para el carro
-                            CEthread_create(&carro_actual.hilo, NULL, cruzar_calle, &carro_actual);
-                            CEthread_join(carro_actual.hilo, NULL); // Esperar a que el carro cruce
+                            //CEthread_create(&carro_actual.hilo, NULL, cruzar_calle, &carro_actual);
+                            carro_actual.hilo=CEThread_create(&cruzar_calle,NULL);
+                            //CEthread_join(carro_actual.hilo, NULL); // Esperar a que el carro cruce
+                            CEThread_join(carro_actual.hilo);
 
                             CEmutex_lock(&mutex_calle);
                             calle_ocupada = 0;
@@ -138,8 +146,10 @@ void *simulacion(void *arg) {
                         calle_ocupada = 2;
                         CEmutex_unlock(&mutex_calle);
 
-                        CEthread_create(&carro_actual.hilo, NULL, cruzar_calle, &carro_actual);
-                        CEthread_join(carro_actual.hilo, NULL);
+                        //CEthread_create(&carro_actual.hilo, NULL, cruzar_calle, &carro_actual);
+                        carro_actual.hilo=CEThread_create(&cruzar_calle,NULL);
+                        //CEthread_join(carro_actual.hilo, NULL); 
+                        CEThread_join(carro_actual.hilo);
 
                         CEmutex_lock(&mutex_calle);
                         calle_ocupada = 0;
@@ -158,8 +168,10 @@ void *simulacion(void *arg) {
                         calle_ocupada = 1;
                         CEmutex_unlock(&mutex_calle);
 
-                        CEthread_create(&carro_actual.hilo, NULL, cruzar_calle, &carro_actual);
-                        CEthread_join(carro_actual.hilo, NULL);
+                        //CEthread_create(&carro_actual.hilo, NULL, cruzar_calle, &carro_actual);
+                        carro_actual.hilo=CEThread_create(&cruzar_calle,NULL);
+                        //CEthread_join(carro_actual.hilo, NULL); 
+                        CEThread_join(carro_actual.hilo);
 
                         CEmutex_lock(&mutex_calle);
                         calle_ocupada = 0;
@@ -184,8 +196,10 @@ void *simulacion(void *arg) {
                         CEmutex_unlock(&mutex_calle);
 
                         // Crear el hilo para el carro
-                        CEthread_create(&carro_actual.hilo, NULL, cruzar_calle, &carro_actual);
-                        CEthread_join(carro_actual.hilo, NULL);
+                        //CEthread_create(&carro_actual.hilo, NULL, cruzar_calle, &carro_actual);
+                        carro_actual.hilo=CEThread_create(&cruzar_calle,NULL);
+                        //CEthread_join(carro_actual.hilo, NULL); 
+                        CEThread_join(carro_actual.hilo);
 
                         CEmutex_lock(&mutex_calle);
                         calle_ocupada = 0;
@@ -206,8 +220,10 @@ void *simulacion(void *arg) {
                         CEmutex_unlock(&mutex_calle);
 
                         // Crear el hilo para el carro
-                        CEthread_create(&carro_actual.hilo, NULL, cruzar_calle, &carro_actual);
-                        CEthread_join(carro_actual.hilo, NULL);
+                        //CEthread_create(&carro_actual.hilo, NULL, cruzar_calle, &carro_actual);
+                        carro_actual.hilo=CEThread_create(&cruzar_calle,NULL);
+                        //CEthread_join(carro_actual.hilo, NULL); 
+                        CEThread_join(carro_actual.hilo);
 
                         CEmutex_lock(&mutex_calle);
                         calle_ocupada = 0;
@@ -225,8 +241,10 @@ void *simulacion(void *arg) {
                         calle_ocupada = 2;
                         CEmutex_unlock(&mutex_calle);
 
-                        CEthread_create(&carro_actual.hilo, NULL, cruzar_calle, &carro_actual);
-                        CEthread_join(carro_actual.hilo, NULL);
+                        //CEthread_create(&carro_actual.hilo, NULL, cruzar_calle, &carro_actual);
+                        carro_actual.hilo=CEThread_create(&cruzar_calle,NULL);
+                        //CEthread_join(carro_actual.hilo, NULL); 
+                        CEThread_join(carro_actual.hilo);
 
                         CEmutex_lock(&mutex_calle);
                         calle_ocupada = 0;
@@ -244,8 +262,10 @@ void *simulacion(void *arg) {
                         calle_ocupada = 1;
                         CEmutex_unlock(&mutex_calle);
 
-                        CEthread_create(&carro_actual.hilo, NULL, cruzar_calle, &carro_actual);
-                        CEthread_join(carro_actual.hilo, NULL);
+                        //CEthread_create(&carro_actual.hilo, NULL, cruzar_calle, &carro_actual);
+                        carro_actual.hilo=CEThread_create(&cruzar_calle,NULL);
+                        //CEthread_join(carro_actual.hilo, NULL); 
+                        CEThread_join(carro_actual.hilo);
 
                         CEmutex_lock(&mutex_calle);
                         calle_ocupada = 0;
@@ -282,8 +302,11 @@ void *simulacion(void *arg) {
                             CEmutex_unlock(&mutex_calle);
                         }
                          // Crear el hilo para el carro
-                        CEthread_create(&carro_actual.hilo, NULL, cruzar_calle, &carro_actual);
-                        CEthread_join(carro_actual.hilo, NULL);
+                        //CEthread_create(&carro_actual.hilo, NULL, cruzar_calle, &carro_actual);
+                        carro_actual.hilo=CEThread_create(&cruzar_calle,NULL);
+                        //CEthread_join(carro_actual.hilo, NULL); 
+                        CEThread_join(carro_actual.hilo);
+
                         CEmutex_lock(&mutex_calle);
                         calle_ocupada = 0;
                         CEmutex_unlock(&mutex_calle);
@@ -299,8 +322,12 @@ void *simulacion(void *arg) {
                         CEmutex_lock(&mutex_calle);
                         calle_ocupada = 1;
                         CEmutex_unlock(&mutex_calle);
-                        CEthread_create(&carro_actual.hilo, NULL, cruzar_calle, &carro_actual);
-                        CEthread_join(carro_actual.hilo, NULL);
+
+                        //CEthread_create(&carro_actual.hilo, NULL, cruzar_calle, &carro_actual);
+                        carro_actual.hilo=CEThread_create(&cruzar_calle,NULL);
+                        //CEthread_join(carro_actual.hilo, NULL); 
+                        CEThread_join(carro_actual.hilo);
+
                         CEmutex_lock(&mutex_calle);
                         calle_ocupada = 0;
                         CEmutex_unlock(&mutex_calle);
@@ -316,8 +343,12 @@ void *simulacion(void *arg) {
                         CEmutex_lock(&mutex_calle);
                         calle_ocupada = 2;
                         CEmutex_unlock(&mutex_calle);
-                        CEthread_create(&carro_actual.hilo, NULL, cruzar_calle, &carro_actual);
-                        CEthread_join(carro_actual.hilo, NULL);
+                        
+                        //CEthread_create(&carro_actual.hilo, NULL, cruzar_calle, &carro_actual);
+                        carro_actual.hilo=CEThread_create(&cruzar_calle,NULL);
+                        //CEthread_join(carro_actual.hilo, NULL); 
+                        CEThread_join(carro_actual.hilo);
+
                         CEmutex_lock(&mutex_calle);
                         calle_ocupada = 0;
                         CEmutex_unlock(&mutex_calle);

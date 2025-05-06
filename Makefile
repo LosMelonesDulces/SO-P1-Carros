@@ -3,13 +3,13 @@ CC = gcc
 CFLAGS = -Wall -Wextra -std=c11
 
 # Archivos fuente
-SRCS = calendarizacion.c algoritmos_calendarizacion.c CEthread.c simulacion.c
+SRCS = main.c algoritmos_calendarizacion.c cethreads.c simulacion.c
 
 # Archivos objeto (reemplaza .c por .o)
 OBJS = $(SRCS:.c=.o)
 
 # Ejecutable
-TARGET = calendarizacion
+TARGET = program
 
 # Regla por defecto
 all: $(TARGET)

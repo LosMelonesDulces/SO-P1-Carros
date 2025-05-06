@@ -8,7 +8,7 @@
 #include <errno.h>
 #include "struct&enum.h"
 #include "algoritmos_calendarizacion.h"
-#include "CEthread.h"
+#include "cethreads.h"
 #include "simulacion.h"
 
 // Variables globales
@@ -16,11 +16,15 @@ ColaCarros cola_izquierda;
 ColaCarros cola_derecha;
 Configuracion configuracion;
 int calle_ocupada = 0; // 0: libre, 1: izquierda, 2: derecha
-pthread_mutex_t mutex_calle;
+//pthread_mutex_t mutex_calle;
+int* mutex_calle;
+
 int letrero_direccion = 0; // 0: izquierda, 1: derecha
 bool fin_simulacion = false;
-pthread_mutex_t mutex_fin_simulacion;
-pthread_cond_t cond_fin_simulacion;
+
+//pthread_mutex_t mutex_fin_simulacion;
+int* mutex_fin_simulacion;
+CEThread_cond_t cond_fin_simulacion;
 
 
 
@@ -129,14 +133,16 @@ void leer_configuracion(const char *nombre_archivo) {
 
 // Función para inicializar la simulación
 void inicializar_simulacion() {
+    fprintf(stderr, "Iniciando simulación...\n");
     // Inicializar las colas de carros
     cola_izquierda.cantidad = 0;
-    CEmutex_init(&cola_izquierda.mutex, NULL);
+    //CEmutex_init(&cola_izquierda.mutex, NULL);
     cola_derecha.cantidad = 0;
-    CEmutex_init(&cola_derecha.mutex, NULL);
-    CEmutex_init(&mutex_calle, NULL);
-    CEmutex_init(&mutex_fin_simulacion, NULL);
-    pthread_cond_init(&cond_fin_simulacion, NULL);
+    //CEmutex_init(&cola_derecha.mutex, NULL);
+    //CEmutex_init(&mutex_calle, NULL);
+    //CEmutex_init(&mutex_fin_simulacion, NULL);
+    CEThread_cond_init(&cond_fin_simulacion);
+    fprintf(stderr, "sali del cond\n");
 
     // Leer la configuración desde el archivo
     leer_configuracion(configuracion.archivo_configuracion);
@@ -170,8 +176,9 @@ void inicializar_simulacion() {
         ordenar_cola(&cola_derecha);
     }
     // Crear el hilo de la simulación
-    pthread_t hilo_simulacion;
-    CEthread_create(&hilo_simulacion, NULL, simulacion, NULL);
+    int hilo_simulacion;
+    //CEthread_create(&hilo_simulacion, NULL, simulacion, NULL);
+    hilo_simulacion = CEThread_create(simulacion, NULL);
 }
 
 // Función para agregar un carro a la simulación (llamada por la interfaz o por teclado)
@@ -212,7 +219,7 @@ void *manejar_teclado(void *arg) {
             CEmutex_lock(&mutex_fin_simulacion);
             fin_simulacion = true;
             CEmutex_unlock(&mutex_fin_simulacion);
-            pthread_cond_signal(&cond_fin_simulacion); // Señalar al hilo de simulación para que termine
+            CEThread_cond_signal(&cond_fin_simulacion); // Señalar al hilo de simulación para que termine
             break;
         } else if (strncmp(comando, "a ", 2) == 0) {
             // Analizar el comando para agregar un carro
@@ -255,17 +262,20 @@ int main() {
     // Inicializar la simulación
     inicializar_simulacion();
 
-    pthread_t hilo_teclado;
+    //pthread_t hilo_teclado;
+    int hilo_teclado;
      if (configuracion.usar_teclado) {
         // Crear el hilo para manejar la entrada del teclado
-        CEthread_create(&hilo_teclado, NULL, manejar_teclado, NULL);
-        CEthread_join(hilo_teclado, NULL); // Esperar a que el hilo del teclado termine (con la señal)
+        //CEthread_create(&hilo_teclado, NULL, manejar_teclado, NULL);
+        hilo_teclado = CEThread_create(manejar_teclado, NULL);
+        //CEthread_join(hilo_teclado, NULL); // Esperar a que el hilo del teclado termine (con la señal)
+        CEThread_join(hilo_teclado);
     }
 
     // Esperar a que la simulación termine
      CEmutex_lock(&mutex_fin_simulacion);
     while (!fin_simulacion) {
-        pthread_cond_wait(&cond_fin_simulacion, &mutex_fin_simulacion);
+        CEThread_cond_wait(&cond_fin_simulacion, &mutex_fin_simulacion);
     }
     CEmutex_unlock(&mutex_fin_simulacion);
 
@@ -276,7 +286,7 @@ int main() {
     CEmutex_destroy(&cola_derecha.mutex);
     CEmutex_destroy(&mutex_calle);
     CEmutex_destroy(&mutex_fin_simulacion);
-    pthread_cond_destroy(&cond_fin_simulacion);
+    CEThread_cond_destroy(&cond_fin_simulacion);
 
     return 0;
 }
