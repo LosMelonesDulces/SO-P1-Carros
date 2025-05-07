@@ -329,7 +329,7 @@ void CEThread_cond_signal(CEThread_cond_t *cond) {
         // Por ahora, simplemente registramos si no se despertó a nadie que se esperaba.
         // fprintf(stderr, "Nota (CEThread_cond_signal): Hilo ID %d de la lista de espera no fue encontrado activo o ya no estaba esperando.\n", thread_id_to_wake);
     }
-}aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+};
 
 
 // --- Difusión (Broadcast) ---

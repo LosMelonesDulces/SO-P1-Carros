@@ -280,7 +280,7 @@ int main() {
         // CEthread_create(&hilo_teclado, NULL, manejar_teclado, NULL);
         hilo_teclado = CEThread_create(manejar_teclado, NULL);
         //CEthread_join(hilo_teclado, NULL); // Esperar a que el hilo del teclado termine (con la señal)
-        CEThread_join(hilo_teclado_id);
+        CEThread_join(hilo_teclado);
     }
 
     // Esperar a que la simulación termine
