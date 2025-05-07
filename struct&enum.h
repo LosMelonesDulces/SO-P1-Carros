@@ -9,6 +9,7 @@
 #define MAX_CARROS 100
 #define MAX_NOMBRE_ARCHIVO 256
 
+
 // Enumeraciones para mayor claridad
 typedef enum {
     FCFS,       // Primero en llegar, primero en ser servido
@@ -32,7 +33,7 @@ typedef enum {
 
 // Estructuras para manejar los datos de los hilos y la simulación
 typedef struct {
-    pthread_t hilo;
+    int hilo;
     int id;
     TipoCarro tipo;
     int prioridad;      // Para el algoritmo de prioridad
@@ -44,7 +45,7 @@ typedef struct {
 typedef struct {
     Carro carros[MAX_CARROS];
     int cantidad;
-    pthread_mutex_t mutex; // Mutex para proteger el acceso a la cola
+    int mutex; // Mutex para proteger el acceso a la cola
 } ColaCarros;
 
 // Estructura para los parámetros de la simulación

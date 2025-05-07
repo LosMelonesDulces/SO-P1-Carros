@@ -16,11 +16,11 @@ ColaCarros cola_izquierda;
 ColaCarros cola_derecha;
 Configuracion configuracion;
 int calle_ocupada = 0; // 0: libre, 1: izquierda, 2: derecha
-pthread_mutex_t mutex_calle;
+int mutex_calle = 0;
 int letrero_direccion = 0; // 0: izquierda, 1: derecha
 bool fin_simulacion = false;
-pthread_mutex_t mutex_fin_simulacion;
-pthread_cond_t cond_fin_simulacion;
+int mutex_fin_simulacion=0;
+CEThread_cond_t cond_fin_simulacion;
 
 
 
@@ -129,14 +129,31 @@ void leer_configuracion(const char *nombre_archivo) {
 
 // Función para inicializar la simulación
 void inicializar_simulacion() {
-    // Inicializar las colas de carros
+    // Inicializar la configuración con valores por defecto
+    initCEThreads();
+    // Inicializar colas y sus mutex
     cola_izquierda.cantidad = 0;
-    CEmutex_init(&cola_izquierda.mutex, NULL);
+    cola_izquierda.mutex = 0; // Inicializar mutex
     cola_derecha.cantidad = 0;
-    CEmutex_init(&cola_derecha.mutex, NULL);
-    CEmutex_init(&mutex_calle, NULL);
-    CEmutex_init(&mutex_fin_simulacion, NULL);
-    pthread_cond_init(&cond_fin_simulacion, NULL);
+    cola_derecha.mutex = 0;  // Inicializar mutex
+
+    // Inicializar mutex globales (ya se inicializan a 0 en la declaración,
+    // pero ser explícito no hace daño si se mueven las declaraciones)
+    mutex_calle = 0;
+    mutex_fin_simulacion = 0;
+
+    // Inicializar la variable de condición
+    CEThread_cond_init(&cond_fin_simulacion); // <--- Inicializar condición
+
+
+    // Inicializar las colas de carros
+    //cola_izquierda.cantidad = 0;
+    //CEmutex_init(&cola_izquierda.mutex, NULL);
+    //cola_derecha.cantidad = 0;
+    //CEmutex_init(&cola_derecha.mutex, NULL);
+    //CEmutex_init(&mutex_calle, NULL);
+    //CEmutex_init(&mutex_fin_simulacion, NULL);
+    //pthread_cond_init(&cond_fin_simulacion, NULL);
 
     // Leer la configuración desde el archivo
     leer_configuracion(configuracion.archivo_configuracion);
@@ -170,8 +187,8 @@ void inicializar_simulacion() {
         ordenar_cola(&cola_derecha);
     }
     // Crear el hilo de la simulación
-    pthread_t hilo_simulacion;
-    CEthread_create(&hilo_simulacion, NULL, simulacion, NULL);
+    int hilo_simulacion;
+    hilo_simulacion = CEThread_create(simulacion, NULL);
 }
 
 // Función para agregar un carro a la simulación (llamada por la interfaz o por teclado)
@@ -240,7 +257,7 @@ void *manejar_teclado(void *arg) {
 }
 
 int main() {
-    // Inicializar la configuración con valores por defecto
+
     strcpy(configuracion.archivo_configuracion, "config.txt"); // Nombre del archivo de configuración por defecto.
     configuracion.algoritmo_flujo = EQUIDAD;
     configuracion.algoritmo_calendarizacion = FCFS;
@@ -255,28 +272,30 @@ int main() {
     // Inicializar la simulación
     inicializar_simulacion();
 
-    pthread_t hilo_teclado;
-     if (configuracion.usar_teclado) {
+    int hilo_teclado;
+    if (configuracion.usar_teclado) {
         // Crear el hilo para manejar la entrada del teclado
-        CEthread_create(&hilo_teclado, NULL, manejar_teclado, NULL);
-        CEthread_join(hilo_teclado, NULL); // Esperar a que el hilo del teclado termine (con la señal)
+        // CEthread_create(&hilo_teclado, NULL, manejar_teclado, NULL);
+        hilo_teclado = CEThread_create(manejar_teclado, NULL);
+        //CEthread_join(hilo_teclado, NULL); // Esperar a que el hilo del teclado termine (con la señal)
     }
 
     // Esperar a que la simulación termine
-     CEmutex_lock(&mutex_fin_simulacion);
+    CEmutex_lock(&mutex_fin_simulacion);
     while (!fin_simulacion) {
-        pthread_cond_wait(&cond_fin_simulacion, &mutex_fin_simulacion);
+        //pthread_cond_wait(&cond_fin_simulacion, &mutex_fin_simulacion);
+        CEThread_cond_wait(&cond_fin_simulacion, &mutex_fin_simulacion);
     }
     CEmutex_unlock(&mutex_fin_simulacion);
 
     printf("Simulación terminada.\n");
 
     // Destruir mutexes y otras estructuras
-    CEmutex_destroy(&cola_izquierda.mutex);
-    CEmutex_destroy(&cola_derecha.mutex);
-    CEmutex_destroy(&mutex_calle);
-    CEmutex_destroy(&mutex_fin_simulacion);
-    pthread_cond_destroy(&cond_fin_simulacion);
+    //CEmutex_destroy(&cola_izquierda.mutex);
+    //CEmutex_destroy(&cola_derecha.mutex);
+    //CEmutex_destroy(&mutex_calle);
+    //CEmutex_destroy(&mutex_fin_simulacion);
+    //pthread_cond_destroy(&cond_fin_simulacion);
 
     return 0;
 }
