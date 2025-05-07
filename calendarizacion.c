@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <pthread.h>
+// #include <pthread.h>
 #include <unistd.h>
 #include <string.h>
 #include <stdbool.h>
@@ -148,12 +148,12 @@ void inicializar_simulacion() {
 
     // Inicializar las colas de carros
     //cola_izquierda.cantidad = 0;
-    //CEmutex_init(&cola_izquierda.mutex, NULL);
+    cola_izquierda.mutex = 0;
     //cola_derecha.cantidad = 0;
-    //CEmutex_init(&cola_derecha.mutex, NULL);
-    //CEmutex_init(&mutex_calle, NULL);
-    //CEmutex_init(&mutex_fin_simulacion, NULL);
-    //pthread_cond_init(&cond_fin_simulacion, NULL);
+    cola_derecha.mutex = 0;
+    mutex_calle = 0;
+    mutex_fin_simulacion = 0;
+    CEThread_cond_init(&cond_fin_simulacion);
 
     // Leer la configuración desde el archivo
     leer_configuracion(configuracion.archivo_configuracion);
@@ -229,7 +229,8 @@ void *manejar_teclado(void *arg) {
             CEmutex_lock(&mutex_fin_simulacion);
             fin_simulacion = true;
             CEmutex_unlock(&mutex_fin_simulacion);
-            pthread_cond_signal(&cond_fin_simulacion); // Señalar al hilo de simulación para que termine
+            // pthread_cond_signal(&cond_fin_simulacion); // Señalar al hilo de simulación para que termine
+            CEThread_cond_signal(&cond_fin_simulacion);
             break;
         } else if (strncmp(comando, "a ", 2) == 0) {
             // Analizar el comando para agregar un carro
@@ -257,6 +258,7 @@ void *manejar_teclado(void *arg) {
 }
 
 int main() {
+    initCEThreads();
 
     strcpy(configuracion.archivo_configuracion, "config.txt"); // Nombre del archivo de configuración por defecto.
     configuracion.algoritmo_flujo = EQUIDAD;
@@ -278,6 +280,7 @@ int main() {
         // CEthread_create(&hilo_teclado, NULL, manejar_teclado, NULL);
         hilo_teclado = CEThread_create(manejar_teclado, NULL);
         //CEthread_join(hilo_teclado, NULL); // Esperar a que el hilo del teclado termine (con la señal)
+        CEThread_join(hilo_teclado_id);
     }
 
     // Esperar a que la simulación termine
@@ -296,6 +299,7 @@ int main() {
     //CEmutex_destroy(&mutex_calle);
     //CEmutex_destroy(&mutex_fin_simulacion);
     //pthread_cond_destroy(&cond_fin_simulacion);
+    CEThread_cond_destroy(&cond_fin_simulacion);
 
     return 0;
 }

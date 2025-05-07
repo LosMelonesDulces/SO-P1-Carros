@@ -1,7 +1,7 @@
 #ifndef SIMULACION_H
 #define SIMULACION_H
 
-#include <pthread.h>
+// #include <pthread.h>
 #include "CEthread.h"
 
 // Declaración de estructuras usadas en la simulación

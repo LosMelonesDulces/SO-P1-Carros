@@ -172,16 +172,10 @@ int SetContext(int i)
     return 1;
 }
 
-int CEmutex_lock(int *mutex)
-{
-    if(*mutex == 0) {
-        *mutex = 1;
-    } else {
-        while (*mutex == 1)
-        {
-            usleep(100);
-        }
-        *mutex = 1;
+int CEmutex_lock(int *mutex) {
+    while (1) {
+        __sync_val_compare_and_swap(mutex, 0, 1); // Intenta adquirir el mutex
+        CEThread_yield(); // El mutex está ocupado, cede el control y reintenta.
     }
     return 0;
 }
@@ -283,58 +277,59 @@ void CEThread_cond_wait(CEThread_cond_t *cond, int *mutex) {
 // Despierta a *un* hilo que espera (si hay alguno).
 void CEThread_cond_signal(CEThread_cond_t *cond) {
     if (!cond || cond->wait_count == 0) {
-        return; // Nadie esperando
+        return; // Nadie esperando o condición no válida
     }
 
-    // Idealmente, proteger el acceso a la lista de espera con un lock,
-    // o asegurar que esta operación sea atómica. En este modelo simple:
+    // Se asume que el acceso a 'cond' (especialmente wait_count y waiting_threads)
+    // no necesita un mutex interno adicional porque CEThread_cond_wait y
+    // CEThread_cond_signal no deberían ser llamados concurrentemente sobre la *misma*
+    // variable de condición sin un mutex externo que los proteja (el mismo mutex
+    // que se pasa a CEThread_cond_wait).
 
-    // 1. Elegir un hilo para despertar (ej., el primero que se añadió)
     int thread_id_to_wake = -1;
-    int woken_index = -1;
+    int waiting_list_index = 0; // Índice en cond->waiting_threads
 
-    // Busca al primer hilo en la lista (FIFO simple)
-    // Podríamos buscarlo en cethreadList para asegurar que aún existe y está activo,
-    // pero mantenemoslo simple por ahora.
-    if (cond->wait_count > 0) {
-        thread_id_to_wake = cond->waiting_threads[0];
-        woken_index = 0; // Marcamos el índice a remover
+    // Extraer el primer ID de la cola de espera de la condición
+    thread_id_to_wake = cond->waiting_threads[0];
 
-        // Desplazar los elementos restantes para llenar el hueco
-        for (int i = 0; i < cond->wait_count - 1; ++i) {
-            cond->waiting_threads[i] = cond->waiting_threads[i + 1];
-        }
-        cond->wait_count--;
-        cond->waiting_threads[cond->wait_count] = -1; // Limpiar último slot usado
-
-        // 2. Buscar el cethread real y marcarlo como no esperando
-        int found = 0;
-        for (int i = 0; i < activeThreads; ++i) { // ¡OJO! Iterar sobre activos o MAX_THREADS?
-                                                 // Iterar sobre la lista completa es más seguro si
-                                                 // la estructura no se compacta perfectamente.
-             // Buscar por ID puede ser ineficiente. Usar índice si es posible.
-             // Asumiendo que el ID es el índice por simplicidad aquí:
-             if (cethreadList[thread_id_to_wake].id == thread_id_to_wake && cethreadList[thread_id_to_wake].active) {
-                 cethreadList[thread_id_to_wake].waiting_on_cond = 0; // ¡Despertar!
-                 found = 1;
-                 break; // Asumimos ID único
-             }
-             // Si el ID no es el índice, necesitas buscarlo:
-             /*
-             if (cethreadList[i].id == thread_id_to_wake && cethreadList[i].active) {
-                 cethreadList[i].waiting_on_cond = 0;
-                 found = 1;
-                 break;
-             }
-             */
-        }
-         if (!found) {
-              // El hilo pudo haber terminado mientras estaba en la lista,
-              // esto es un caso borde a considerar.
-              // Podríamos intentar despertar al siguiente.
-         }
+    // Desplazar los elementos restantes en la cola de espera de la condición
+    for (int i = 0; i < cond->wait_count - 1; ++i) {
+        cond->waiting_threads[i] = cond->waiting_threads[i + 1];
     }
-}
+    cond->waiting_threads[cond->wait_count - 1] = -1; // Limpiar el último slot usado
+    cond->wait_count--;
+
+    // Ahora, buscar y despertar el hilo correspondiente en cethreadList
+    int found_and_woken = 0;
+    for (int i = 0; i < MAX_THREADS; ++i) { // Iterar sobre toda la lista de posibles hilos
+        if (cethreadList[i].active && cethreadList[i].id == thread_id_to_wake) {
+            // Hilo encontrado y activo
+            if (cethreadList[i].waiting_on_cond) { // Doble chequeo: ¿realmente estaba esperando?
+                cethreadList[i].waiting_on_cond = 0; // ¡Despertar!
+                // Nota: El hilo despertado volverá a adquirir su mutex
+                // cuando CEThread_yield() le devuelva el control dentro de CEThread_cond_wait.
+                found_and_woken = 1;
+            } else {
+                // El hilo estaba en la lista de espera de la condición,
+                // pero su flag waiting_on_cond ya era 0. Esto podría
+                // indicar un estado inconsistente o un despertar espurio ya manejado.
+                // Generalmente, esto no debería ocurrir si la lógica es correcta.
+                fprintf(stderr, "Advertencia (CEThread_cond_signal): Hilo ID %d en lista de espera pero no marcado como waiting_on_cond.\n", thread_id_to_wake);
+            }
+            break; // ID de hilo es único, no necesitamos seguir buscando
+        }
+    }
+
+    if (!found_and_woken) {
+        // Si el hilo no se encontró activo o ya no estaba esperando,
+        // puede ser que haya sido terminado o despertado por otra vía.
+        // En una implementación más compleja, podrías intentar despertar al siguiente
+        // de la lista de espera de la condición si el primero falló, pero esto
+        // añade complejidad y puede alterar la semántica FIFO esperada.
+        // Por ahora, simplemente registramos si no se despertó a nadie que se esperaba.
+        // fprintf(stderr, "Nota (CEThread_cond_signal): Hilo ID %d de la lista de espera no fue encontrado activo o ya no estaba esperando.\n", thread_id_to_wake);
+    }
+}aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 
 
 // --- Difusión (Broadcast) ---

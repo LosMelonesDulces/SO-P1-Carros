@@ -1,10 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <pthread.h>
+// #include <pthread.h>
 #include <unistd.h>
 #include <stdbool.h>
 #include "struct&enum.h"
 #include "simulacion.h"
+#include "CEthread.h"
 
 // Variables globales necesarias
 extern ColaCarros cola_izquierda;
@@ -351,7 +352,8 @@ void *simulacion(void *arg) {
                 CEmutex_lock(&mutex_fin_simulacion);
                 fin_simulacion = true;
                 CEmutex_unlock(&mutex_fin_simulacion);
-                pthread_cond_signal(&cond_fin_simulacion);
+                // pthread_cond_signal(&cond_fin_simulacion);
+                CEThread_cond_signal(&cond_fin_simulacion);
                 return NULL;
         }
         // Cambiar el letrero cada cierto tiempo
