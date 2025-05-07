@@ -2,7 +2,7 @@
 #define SIMULACION_H
 
 // #include <pthread.h>
-#include "CEthread.h"
+#include "cethreads.h"
 
 // Declaración de estructuras usadas en la simulación
 #include "struct&enum.h"
