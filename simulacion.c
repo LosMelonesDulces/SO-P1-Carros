@@ -1,92 +1,98 @@
 #include <stdio.h>
 #include <stdlib.h>
-// #include <pthread.h> // <<< REMOVE PTHREAD
 #include <unistd.h>
 #include <stdbool.h>
-#include "struct&enum.h" // Will now include cethreads.h transitively for types
+#include <string.h> 
+#include "struct&enum.h" 
 #include "simulacion.h"
-// cethreads.h might also be directly included if needed, but struct&enum.h should cover it.
 
-// Variables globales (ya declaradas extern en struct&enum.h)
-// extern ColaCarros cola_izquierda;
-// extern ColaCarros cola_derecha;
-// extern Configuracion configuracion;
-// extern int calle_ocupada;
-// extern cethread_mutex_t mutex_calle; // Correct type from struct&enum.h
-// extern int letrero_direccion;
-// extern bool fin_simulacion;
-// extern cethread_mutex_t mutex_fin_simulacion; // Correct type
-// extern cethread_cond_t cond_fin_simulacion;   // Correct type
+// Variables globales externas (definidas en calendarizacion.c)
+extern ColaCarros cola_izquierda;
+extern ColaCarros cola_derecha;
+extern Configuracion configuracion;
+extern int calle_ocupada;
+extern cethread_mutex_t mutex_calle;
+extern int letrero_direccion;
+extern bool fin_simulacion; // La variable global que indica si la simulación debe terminar
+extern cethread_mutex_t mutex_fin_simulacion; // Mutex para proteger fin_simulacion
+extern cethread_cond_t cond_fin_simulacion; // Variable de condición (si se usa para señalar fin)
+
+// Nuevas variables globales externas para el conteo y finalización automática
+extern int carros_total_simulacion; // Total de carros a simular en modo no-teclado
+extern int carros_que_han_cruzado;  // Contador de carros que ya cruzaron
+extern cethread_mutex_t mutex_contador_carros; // Mutex para proteger los contadores
+
 
 // Función para simular el cruce de un carro
 void *cruzar_calle(void *arg) {
     Carro *carro = (Carro *)arg;
-    int tiempo_cruce;
+    int tiempo_cruce_calculado;
 
     switch (carro->tipo) {
         case NORMAL:
-            tiempo_cruce = configuracion.largo_calle / configuracion.velocidad_carros;
+            tiempo_cruce_calculado = configuracion.largo_calle / configuracion.velocidad_carros;
             break;
         case DEPORTIVO:
-            tiempo_cruce = (configuracion.largo_calle / configuracion.velocidad_carros) * 0.7; // Assuming 0.7 factor
+            tiempo_cruce_calculado = (int)((configuracion.largo_calle / (double)configuracion.velocidad_carros) * 0.7);
             break;
         case EMERGENCIA:
-            tiempo_cruce = (configuracion.largo_calle / configuracion.velocidad_carros) * 0.5; // Assuming 0.5 factor
+            tiempo_cruce_calculado = (int)((configuracion.largo_calle / (double)configuracion.velocidad_carros) * 0.5);
             break;
         default:
-            tiempo_cruce = configuracion.largo_calle / configuracion.velocidad_carros;
+            tiempo_cruce_calculado = configuracion.largo_calle / configuracion.velocidad_carros;
             break;
     }
-    // Ensure tiempo_cruce is at least 1 to prevent issues with sleep(0) behavior
-    if (tiempo_cruce <= 0) tiempo_cruce = 1;
-    carro->tiempo_cruce = tiempo_cruce;
+    
+    if (tiempo_cruce_calculado <= 0) tiempo_cruce_calculado = 1; 
+    carro->tiempo_cruce = tiempo_cruce_calculado;
 
     printf("Carro %d (Tipo: %d, Lado: %s, cethread_id: %d) comienza a cruzar. Tiempo: %d seg.\n",
-           carro->id, carro->tipo, carro->lado == 0 ? "Izquierda" : "Derecha", carro->cethread_hilo_id, tiempo_cruce);
-    sleep(tiempo_cruce); // sleep() is compatible with user-level threads if it doesn't block the whole process
-                         // For true non-blocking user-level sleep, a timer mechanism within cethreads would be needed.
-                         // For this exercise, we'll assume sleep() is acceptable or acts as a simple delay.
+           carro->id, carro->tipo, carro->lado == 0 ? "Izquierda" : "Derecha", carro->cethread_hilo_id, tiempo_cruce_calculado);
+    
+    sleep(tiempo_cruce_calculado); 
+    
     printf("Carro %d (Tipo: %d, Lado: %s) ha cruzado la calle.\n", carro->id, carro->tipo, carro->lado == 0 ? "Izquierda" : "Derecha");
 
-    // pthread_exit(NULL); // <<< CHANGE
-    cethread_exit(NULL);  // <<< TO THIS (will be handled by cethreads wrapper)
-    return NULL; // Keep compiler happy, cethread_exit won't return here.
+    cethread_exit(NULL); 
+    return NULL; 
 }
 
 // Función para manejar la lógica de la simulación
 void *simulacion(void *arg) {
     int carros_pasados_izquierda = 0;
     int carros_pasados_derecha = 0;
-    int direccion_actual_flujo = 0; // 0: procesar izquierda, 1: procesar derecha (for EQUIDAD)
-    Carro carro_actual;
+    int direccion_actual_flujo = 0; 
+    Carro carro_actual; 
+    bool local_fin_simulacion = false; // Variable local para la condición del bucle
 
-    while (true) {
-        // CEmutex_lock(&mutex_fin_simulacion); // <<< CHANGE
-        cethread_mutex_lock(&mutex_fin_simulacion); // <<< TO THIS
-        if (fin_simulacion) {
-            // CEmutex_unlock(&mutex_fin_simulacion); // <<< CHANGE
-            cethread_mutex_unlock(&mutex_fin_simulacion); // <<< TO THIS
-            break;
+    printf("INFO (Simulación): Hilo de simulación iniciado.\n");
+    if (!configuracion.usar_teclado) {
+        printf("INFO (Simulación): Modo no-teclado. Carros a procesar inicialmente: %d.\n", carros_total_simulacion);
+    }
+
+    while (!local_fin_simulacion) { // Usar variable local para la condición del bucle
+        cethread_mutex_lock(&mutex_fin_simulacion);
+        local_fin_simulacion = fin_simulacion; // Actualizar la copia local
+        cethread_mutex_unlock(&mutex_fin_simulacion);
+
+        if (local_fin_simulacion) {
+            break; // Salir del bucle si la simulación debe terminar
         }
-        // CEmutex_unlock(&mutex_fin_simulacion); // <<< CHANGE
-        cethread_mutex_unlock(&mutex_fin_simulacion); // <<< TO THIS
 
         bool procesar_carro = false;
-        int lado_a_procesar = -1; // 0 for left, 1 for right
+        int lado_a_procesar = -1; 
 
-        // Acquire relevant locks before checking cola_*.cantidad
-        // For simplicity, let's decide which queue to try first, then lock.
-        // This might involve some re-checking if the state changes.
-
+        // --- INICIO LÓGICA DE SELECCIÓN DE CARRO (EQUIDAD, LETRERO, FIFO) ---
+        // Esta sección es idéntica a la versión anterior que corregía los mutex de las colas.
+        // Por brevedad, se omite aquí, pero debe ser la lógica ya corregida.
+        // Asegúrate de que esta parte esté correcta según la discusión anterior.
+        // Ejemplo para EQUIDAD (debe ser la versión completa y corregida):
         switch (configuracion.algoritmo_flujo) {
             case EQUIDAD:
-                // CEmutex_lock(&cola_izquierda.mutex); // Lock earlier or be careful
-                // CEmutex_lock(&cola_derecha.mutex);
                 if (direccion_actual_flujo == 0) { // Prioritize Izquierda
                     cethread_mutex_lock(&cola_izquierda.mutex);
                     if (cola_izquierda.cantidad > 0 && carros_pasados_izquierda < configuracion.w) {
                         carro_actual = cola_izquierda.carros[0];
-                        // ... (remove carro from cola_izquierda.carros)
                         for (int i = 0; i < cola_izquierda.cantidad - 1; i++) {
                             cola_izquierda.carros[i] = cola_izquierda.carros[i + 1];
                         }
@@ -94,53 +100,48 @@ void *simulacion(void *arg) {
                         procesar_carro = true;
                         lado_a_procesar = 0;
                         carros_pasados_izquierda++;
-                    } else { // Switch direction or no cars
-                        direccion_actual_flujo = 1;
-                        carros_pasados_izquierda = 0;
-                        // Try derecha immediately if izquierda was skipped
-                         cethread_mutex_unlock(&cola_izquierda.mutex); // Unlock before trying the other
-                         cethread_mutex_lock(&cola_derecha.mutex);
-                         if (cola_derecha.cantidad > 0 && carros_pasados_derecha < configuracion.w) {
+                        cethread_mutex_unlock(&cola_izquierda.mutex); 
+                    } else { 
+                        cethread_mutex_unlock(&cola_izquierda.mutex); 
+                        carros_pasados_izquierda = 0; 
+                        direccion_actual_flujo = 1; 
+
+                        cethread_mutex_lock(&cola_derecha.mutex);
+                        if (cola_derecha.cantidad > 0 && carros_pasados_derecha < configuracion.w) {
                             carro_actual = cola_derecha.carros[0];
-                            // ... (remove carro from cola_derecha.carros)
-                             for (int i = 0; i < cola_derecha.cantidad - 1; i++) {
+                            for (int i = 0; i < cola_derecha.cantidad - 1; i++) {
                                 cola_derecha.carros[i] = cola_derecha.carros[i + 1];
                             }
                             cola_derecha.cantidad--;
                             procesar_carro = true;
                             lado_a_procesar = 1;
-                            carros_pasados_derecha++;
-                         } else {
-                            // If still no car, may need to switch back or wait
-                            if(cola_derecha.cantidad == 0 && cola_izquierda.cantidad > 0) direccion_actual_flujo = 0; // Switch back if only left has cars now
-                            carros_pasados_derecha = 0; // Reset if switching
-                         }
-                         cethread_mutex_unlock(&cola_derecha.mutex);
-                         if(procesar_carro) cethread_mutex_lock(&cola_izquierda.mutex); // Re-lock if we are processing from left after all
+                            carros_pasados_derecha++; 
+                        } else {
+                            carros_pasados_derecha = 0; 
+                        }
+                        cethread_mutex_unlock(&cola_derecha.mutex);
                     }
-                     cethread_mutex_unlock(&cola_izquierda.mutex); // Ensure it's unlocked if path leads here
                 } else { // Prioritize Derecha (direccion_actual_flujo == 1)
                     cethread_mutex_lock(&cola_derecha.mutex);
                     if (cola_derecha.cantidad > 0 && carros_pasados_derecha < configuracion.w) {
                         carro_actual = cola_derecha.carros[0];
-                        // ... (remove carro)
-                         for (int i = 0; i < cola_derecha.cantidad - 1; i++) {
+                        for (int i = 0; i < cola_derecha.cantidad - 1; i++) {
                             cola_derecha.carros[i] = cola_derecha.carros[i + 1];
                         }
                         cola_derecha.cantidad--;
                         procesar_carro = true;
                         lado_a_procesar = 1;
                         carros_pasados_derecha++;
-                    } else {
-                        direccion_actual_flujo = 0;
-                        carros_pasados_derecha = 0;
-                        // Try izquierda immediately
                         cethread_mutex_unlock(&cola_derecha.mutex);
+                    } else { 
+                        cethread_mutex_unlock(&cola_derecha.mutex);
+                        carros_pasados_derecha = 0; 
+                        direccion_actual_flujo = 0; 
+
                         cethread_mutex_lock(&cola_izquierda.mutex);
                         if (cola_izquierda.cantidad > 0 && carros_pasados_izquierda < configuracion.w) {
                             carro_actual = cola_izquierda.carros[0];
-                            // ... (remove carro)
-                             for (int i = 0; i < cola_izquierda.cantidad - 1; i++) {
+                            for (int i = 0; i < cola_izquierda.cantidad - 1; i++) {
                                 cola_izquierda.carros[i] = cola_izquierda.carros[i + 1];
                             }
                             cola_izquierda.cantidad--;
@@ -148,45 +149,49 @@ void *simulacion(void *arg) {
                             lado_a_procesar = 0;
                             carros_pasados_izquierda++;
                         } else {
-                             if(cola_izquierda.cantidad == 0 && cola_derecha.cantidad > 0) direccion_actual_flujo = 1;
-                             carros_pasados_izquierda = 0;
+                            carros_pasados_izquierda = 0;
                         }
                         cethread_mutex_unlock(&cola_izquierda.mutex);
-                        if(procesar_carro) cethread_mutex_lock(&cola_derecha.mutex);
                     }
-                    cethread_mutex_unlock(&cola_derecha.mutex);
                 }
-                 if (!procesar_carro) { // If W limit reached for both or queues empty
-                    // Check if one queue has cars and other doesn't, allow passage overriding W
+                if (!procesar_carro) { // Anti-inanición
                     cethread_mutex_lock(&cola_izquierda.mutex);
-                    bool izq_has_cars = cola_izquierda.cantidad > 0;
+                    bool izq_tiene_carros = cola_izquierda.cantidad > 0;
                     cethread_mutex_unlock(&cola_izquierda.mutex);
+
                     cethread_mutex_lock(&cola_derecha.mutex);
-                    bool der_has_cars = cola_derecha.cantidad > 0;
+                    bool der_tiene_carros = cola_derecha.cantidad > 0;
                     cethread_mutex_unlock(&cola_derecha.mutex);
 
-                    if (izq_has_cars && !der_has_cars) {
+                    if (izq_tiene_carros && !der_tiene_carros) {
                         cethread_mutex_lock(&cola_izquierda.mutex);
-                        carro_actual = cola_izquierda.carros[0];
-                        for (int i = 0; i < cola_izquierda.cantidad - 1; i++) cola_izquierda.carros[i] = cola_izquierda.carros[i+1];
-                        cola_izquierda.cantidad--;
-                        procesar_carro = true; lado_a_procesar = 0;
+                        if (cola_izquierda.cantidad > 0) { 
+                            carro_actual = cola_izquierda.carros[0];
+                            for (int i = 0; i < cola_izquierda.cantidad - 1; i++) cola_izquierda.carros[i] = cola_izquierda.carros[i+1];
+                            cola_izquierda.cantidad--;
+                            procesar_carro = true; lado_a_procesar = 0;
+                            carros_pasados_izquierda = 1; 
+                            carros_pasados_derecha = 0;
+                            direccion_actual_flujo = 0; 
+                        }
                         cethread_mutex_unlock(&cola_izquierda.mutex);
-                        // carros_pasados_izquierda++; // W rule might be relaxed here
-                    } else if (!izq_has_cars && der_has_cars) {
+                    } else if (!izq_tiene_carros && der_tiene_carros) {
                         cethread_mutex_lock(&cola_derecha.mutex);
-                        carro_actual = cola_derecha.carros[0];
-                        for (int i = 0; i < cola_derecha.cantidad - 1; i++) cola_derecha.carros[i] = cola_derecha.carros[i+1];
-                        cola_derecha.cantidad--;
-                        procesar_carro = true; lado_a_procesar = 1;
+                        if (cola_derecha.cantidad > 0) { 
+                            carro_actual = cola_derecha.carros[0];
+                            for (int i = 0; i < cola_derecha.cantidad - 1; i++) cola_derecha.carros[i] = cola_derecha.carros[i+1];
+                            cola_derecha.cantidad--;
+                            procesar_carro = true; lado_a_procesar = 1;
+                            carros_pasados_derecha = 1; 
+                            carros_pasados_izquierda = 0;
+                            direccion_actual_flujo = 1; 
+                        }
                         cethread_mutex_unlock(&cola_derecha.mutex);
-                        // carros_pasados_derecha++;
                     }
                 }
                 break;
-
             case LETRERO:
-                if (letrero_direccion == 0) { // Izquierda tiene prioridad
+                if (letrero_direccion == 0) { 
                     cethread_mutex_lock(&cola_izquierda.mutex);
                     if (cola_izquierda.cantidad > 0) {
                         carro_actual = cola_izquierda.carros[0];
@@ -195,7 +200,7 @@ void *simulacion(void *arg) {
                         procesar_carro = true; lado_a_procesar = 0;
                     }
                     cethread_mutex_unlock(&cola_izquierda.mutex);
-                } else { // Derecha tiene prioridad
+                } else { 
                     cethread_mutex_lock(&cola_derecha.mutex);
                     if (cola_derecha.cantidad > 0) {
                         carro_actual = cola_derecha.carros[0];
@@ -205,9 +210,8 @@ void *simulacion(void *arg) {
                     }
                     cethread_mutex_unlock(&cola_derecha.mutex);
                 }
-                // If preferred direction is empty, check other direction
-                if (!procesar_carro) {
-                     if (letrero_direccion == 0) { // Izquierda era preferida, ahora prueba derecha
+                if (!procesar_carro) { 
+                     if (letrero_direccion == 0) { 
                         cethread_mutex_lock(&cola_derecha.mutex);
                         if (cola_derecha.cantidad > 0) {
                            carro_actual = cola_derecha.carros[0];
@@ -216,7 +220,7 @@ void *simulacion(void *arg) {
                            procesar_carro = true; lado_a_procesar = 1;
                         }
                         cethread_mutex_unlock(&cola_derecha.mutex);
-                     } else { // Derecha era preferida, ahora prueba izquierda
+                     } else { 
                         cethread_mutex_lock(&cola_izquierda.mutex);
                         if (cola_izquierda.cantidad > 0) {
                            carro_actual = cola_izquierda.carros[0];
@@ -228,10 +232,7 @@ void *simulacion(void *arg) {
                      }
                 }
                 break;
-
             case FIFO:
-                // Simplistic FIFO: pick non-empty randomly, or one if other is empty
-                // This needs careful locking to avoid race conditions when checking counts
                 cethread_mutex_lock(&cola_izquierda.mutex);
                 bool izq_not_empty = cola_izquierda.cantidad > 0;
                 cethread_mutex_unlock(&cola_izquierda.mutex);
@@ -241,16 +242,18 @@ void *simulacion(void *arg) {
                 cethread_mutex_unlock(&cola_derecha.mutex);
 
                 if (izq_not_empty && der_not_empty) {
-                    lado_a_procesar = rand() % 2;
+                    lado_a_procesar = rand() % 2; 
                 } else if (izq_not_empty) {
                     lado_a_procesar = 0;
                 } else if (der_not_empty) {
                     lado_a_procesar = 1;
+                } else {
+                    lado_a_procesar = -1; 
                 }
 
                 if (lado_a_procesar == 0) {
                     cethread_mutex_lock(&cola_izquierda.mutex);
-                    if (cola_izquierda.cantidad > 0) { // Re-check after lock
+                    if (cola_izquierda.cantidad > 0) { 
                         carro_actual = cola_izquierda.carros[0];
                         for (int i = 0; i < cola_izquierda.cantidad - 1; i++) cola_izquierda.carros[i] = cola_izquierda.carros[i+1];
                         cola_izquierda.cantidad--;
@@ -259,7 +262,7 @@ void *simulacion(void *arg) {
                     cethread_mutex_unlock(&cola_izquierda.mutex);
                 } else if (lado_a_procesar == 1) {
                     cethread_mutex_lock(&cola_derecha.mutex);
-                     if (cola_derecha.cantidad > 0) { // Re-check
+                     if (cola_derecha.cantidad > 0) { 
                         carro_actual = cola_derecha.carros[0];
                         for (int i = 0; i < cola_derecha.cantidad - 1; i++) cola_derecha.carros[i] = cola_derecha.carros[i+1];
                         cola_derecha.cantidad--;
@@ -270,70 +273,117 @@ void *simulacion(void *arg) {
                 break;
             default:
                 fprintf(stderr, "Error: Algoritmo de flujo no válido en simulación.\n");
-                // CEmutex_lock(&mutex_fin_simulacion); // <<< CHANGE
-                cethread_mutex_lock(&mutex_fin_simulacion); // <<< TO THIS
-                fin_simulacion = true;
-                // CEmutex_unlock(&mutex_fin_simulacion); // <<< CHANGE
-                cethread_mutex_unlock(&mutex_fin_simulacion); // <<< TO THIS
-                // pthread_cond_signal(&cond_fin_simulacion); // <<< CHANGE
-                cethread_cond_signal(&cond_fin_simulacion); // <<< TO THIS
-                // cethread_exit(NULL); // Sim thread exits
-                return NULL;
+                cethread_mutex_lock(&mutex_fin_simulacion);
+                fin_simulacion = true; 
+                local_fin_simulacion = true; // Actualizar también la copia local para salir del bucle
+                cethread_mutex_unlock(&mutex_fin_simulacion);
+                break; 
+        }
+        // --- FIN LÓGICA DE SELECCIÓN DE CARRO ---
+
+        if (local_fin_simulacion) { // Re-verificar después de la lógica de selección por si se marcó fin
+            break;
         }
 
         if (procesar_carro) {
-            // CEmutex_lock(&mutex_calle); // <<< CHANGE
-            cethread_mutex_lock(&mutex_calle); // <<< TO THIS
-            calle_ocupada = (lado_a_procesar == 0) ? 1 : 2;
-            // CEmutex_unlock(&mutex_calle); // <<< CHANGE
-            cethread_mutex_unlock(&mutex_calle); // <<< TO THIS
+            cethread_mutex_lock(&mutex_calle);
+            calle_ocupada = (lado_a_procesar == 0) ? 1 : 2; 
+            cethread_mutex_unlock(&mutex_calle);
 
-            // CEthread_create(&carro_actual.hilo, NULL, cruzar_calle, &carro_actual); // <<< CHANGE
-            // The carro_actual is on the stack of `simulacion` thread.
-            // If `cruzar_calle` takes a long time and `simulacion` proceeds, `carro_actual` could be overwritten.
-            // This was an issue with pthreads too. A common fix is to pass a dynamically allocated copy,
-            // or ensure `cruzar_calle` finishes before `carro_actual` goes out of scope or is reused.
-            // The CEthread_join immediately after was a way to handle this for pthreads.
-            // For cethreads, we will do the same.
-            // simulacion.c - in the loop processing cars
             Carro *car_to_pass = (Carro*)malloc(sizeof(Carro));
-            if (!car_to_pass) { /* ... error handling ... */ continue; }
+            if (!car_to_pass) {
+                fprintf(stderr, "Error: Fallo de malloc para car_to_pass\n");
+                cethread_mutex_lock(&mutex_fin_simulacion);
+                fin_simulacion = true; // Terminar si hay error crítico
+                local_fin_simulacion = true;
+                cethread_mutex_unlock(&mutex_fin_simulacion);
+                continue; 
+            }
             memcpy(car_to_pass, &carro_actual, sizeof(Carro));
 
             if (cethread_create(&car_to_pass->cethread_hilo_id, cruzar_calle, car_to_pass) != 0) {
                 fprintf(stderr, "Error creando hilo para carro %d.\n", car_to_pass->id);
-                free(car_to_pass); // Clean up if create fails
+                free(car_to_pass);
             } else {
                 cethread_join(car_to_pass->cethread_hilo_id, NULL);
-                // After join, the car_to_pass was processed by cruzar_calle.
-                // The memory for car_to_pass should be freed.
-                free(car_to_pass); // This is correct. `simulacion` thread owns this memory.
+                free(car_to_pass);
+
+                // Lógica de finalización para modo no-teclado
+                if (!configuracion.usar_teclado) {
+                    bool todos_han_cruzado_ahora = false;
+                    cethread_mutex_lock(&mutex_contador_carros);
+                    carros_que_han_cruzado++;
+                    printf("INFO (Simulación): Carros cruzados: %d de %d\n", carros_que_han_cruzado, carros_total_simulacion);
+                    if (carros_total_simulacion > 0 && carros_que_han_cruzado >= carros_total_simulacion) {
+                        todos_han_cruzado_ahora = true;
+                    }
+                    cethread_mutex_unlock(&mutex_contador_carros); 
+                    
+                    if (todos_han_cruzado_ahora) {
+                        printf("INFO (Simulación): Todos los carros configurados han cruzado. Señalando para finalizar.\n");
+                        cethread_mutex_lock(&mutex_fin_simulacion);
+                        if (!fin_simulacion) { // Solo establecer si no estaba ya
+                           fin_simulacion = true;
+                           local_fin_simulacion = true; // Actualizar copia local para salir en esta iteración
+                        }
+                        cethread_mutex_unlock(&mutex_fin_simulacion);
+                    }
+                }
+            }
+
+            cethread_mutex_lock(&mutex_calle);
+            calle_ocupada = 0; 
+            cethread_mutex_unlock(&mutex_calle);
+        } else { // No se procesó ningún carro en esta iteración
+            // Si no se procesó carro y estamos en modo no-teclado, verificar si ya todos cruzaron
+            // Esto es un seguro adicional.
+            if (!configuracion.usar_teclado && carros_total_simulacion > 0) {
+                bool todos_cruzaron_check = false;
+                cethread_mutex_lock(&mutex_contador_carros);
+                if (carros_que_han_cruzado >= carros_total_simulacion) {
+                    todos_cruzaron_check = true;
+                }
+                cethread_mutex_unlock(&mutex_contador_carros);
+
+                if (todos_cruzaron_check) {
+                    cethread_mutex_lock(&mutex_fin_simulacion);
+                    if (!fin_simulacion) { 
+                        printf("INFO (Simulación): No se procesó carro, pero chequeo indica que todos cruzaron. Finalizando.\n");
+                        fin_simulacion = true;
+                        local_fin_simulacion = true;
+                    }
+                    cethread_mutex_unlock(&mutex_fin_simulacion);
+                }
+            }
+             // Si no hay carros en ninguna cola y es modo no-teclado, y el total es 0 (o ya se cumplió)
+            if (!configuracion.usar_teclado && 
+                cola_izquierda.cantidad == 0 && cola_derecha.cantidad == 0 &&
+                (carros_total_simulacion == 0 || carros_que_han_cruzado >= carros_total_simulacion)) {
+                
+                cethread_mutex_lock(&mutex_fin_simulacion);
+                if (!fin_simulacion) {
+                    printf("INFO (Simulación): Colas vacías y todos los carros procesados (o total 0). Finalizando.\n");
+                    fin_simulacion = true;
+                    local_fin_simulacion = true;
+                }
+                cethread_mutex_unlock(&mutex_fin_simulacion);
             }
 
 
-            // CEmutex_lock(&mutex_calle); // <<< CHANGE
-            cethread_mutex_lock(&mutex_calle); // <<< TO THIS
-            calle_ocupada = 0; // Liberar la calle
-            // CEmutex_unlock(&mutex_calle); // <<< CHANGE
-            cethread_mutex_unlock(&mutex_calle); // <<< TO THIS
-        } else {
-            // No car processed, maybe sleep briefly to avoid busy waiting if queues are empty
-             usleep(10000); // 10ms, so CPU is not hammered
+            if (!local_fin_simulacion) { // Solo dormir si no estamos a punto de salir
+                usleep(100000); 
+            }
         }
 
-        if (configuracion.algoritmo_flujo == LETRERO) {
-            // This sleep should ideally be handled by a timer thread or a non-blocking sleep
-            // if this simulation thread is not supposed to block other cethreads.
-            // For simplicity, using sleep() here.
+        if (configuracion.algoritmo_flujo == LETRERO && !local_fin_simulacion) {
             sleep(configuracion.tiempo_cambio_letrero);
-            cethread_mutex_lock(&mutex_calle); // Protect letrero_direccion change if other threads could read it
+            cethread_mutex_lock(&mutex_calle); 
             letrero_direccion = !letrero_direccion;
-            printf("El letrero ha cambiado a %s.\n", letrero_direccion == 0 ? "IZQUIERDA" : "DERECHA");
+            printf("INFO (Simulación): El letrero ha cambiado a %s.\n", letrero_direccion == 0 ? "IZQUIERDA" : "DERECHA");
             cethread_mutex_unlock(&mutex_calle);
         }
-         // cethread_yield(); // Give other threads a chance to run, especially if no car was processed
+        // Al final del bucle, local_fin_simulacion se re-evaluará al inicio de la siguiente iteración
     }
-    printf("Hilo de simulación terminando.\n");
-    // cethread_exit(NULL); // Sim thread exits
+    printf("INFO (Simulación): Hilo de simulación terminando.\n");
     return NULL;
 }
