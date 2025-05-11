@@ -134,6 +134,7 @@ void inicializar_simulacion() {
             carro.tipo = NORMAL; // O aleatorio
             carro.lado = 0; // Izquierda
             carro.prioridad = rand() % 5 + 1;
+            carro.tiempo_faltante = 0; // Inicializar tiempo_faltante
             carro.tiempo_maximo = configuracion.tiempo_maximo_cruce_emergencia;
             // No se necesita cethread_hilo_id aquí, se asignará al crear el hilo para cruzar
             cethread_mutex_lock(&cola_izquierda.mutex);
@@ -148,6 +149,7 @@ void inicializar_simulacion() {
             carro.tipo = NORMAL; // O aleatorio
             carro.lado = 1; // Derecha
             carro.prioridad = rand() % 5 + 1;
+            carro.tiempo_faltante = 0; // Inicializar tiempo_faltante
             carro.tiempo_maximo = configuracion.tiempo_maximo_cruce_emergencia;
             cethread_mutex_lock(&cola_derecha.mutex);
             if (cola_derecha.cantidad < MAX_CARROS_COLA) {

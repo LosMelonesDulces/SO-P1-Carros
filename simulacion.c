@@ -46,12 +46,42 @@ void *cruzar_calle(void *arg) {
     if (tiempo_cruce_calculado <= 0) tiempo_cruce_calculado = 1; 
     carro->tiempo_cruce = tiempo_cruce_calculado;
 
-    printf("Carro %d (Tipo: %d, Lado: %s, cethread_id: %d) comienza a cruzar. Tiempo: %d seg.\n",
-           carro->id, carro->tipo, carro->lado == 0 ? "Izquierda" : "Derecha", carro->cethread_hilo_id, tiempo_cruce_calculado);
     
-    sleep(tiempo_cruce_calculado); 
     
-    printf("Carro %d (Tipo: %d, Lado: %s) ha cruzado la calle.\n", carro->id, carro->tipo, carro->lado == 0 ? "Izquierda" : "Derecha");
+    if (configuracion.algoritmo_calendarizacion == RR) {
+        // Simulación de un algoritmo de Round Robin
+        if (carro->tiempo_faltante == 0) {
+            carro->tiempo_faltante = tiempo_cruce_calculado; // Inicializar tiempo_faltante
+        }
+        if (carro->tiempo_faltante > configuracion.w) {
+            carro->tiempo_faltante -= configuracion.w;
+            tiempo_cruce_calculado = configuracion.w; // Solo cruza por el tiempo de quantum
+            if (carro->lado == 0){
+                cola_izquierda.carros[cola_izquierda.cantidad++] = *carro; // Reagregar a la cola
+            }
+            else{
+                cola_derecha.carros[cola_derecha.cantidad++] = *carro; // Reagregar a la cola
+            }
+            printf("Carro %d (Tipo: %d, Lado: %s, cethread_id: %d) comienza a cruzar. Tiempo: %d seg.\n",
+                carro->id, carro->tipo, carro->lado == 0 ? "Izquierda" : "Derecha", carro->cethread_hilo_id, tiempo_cruce_calculado);
+            sleep(tiempo_cruce_calculado);
+        } else {
+            tiempo_cruce_calculado = carro->tiempo_faltante;
+            carro->tiempo_faltante = 0; // Se ha cruzado completamente
+            printf("Carro %d (Tipo: %d, Lado: %s, cethread_id: %d) comienza a cruzar. Tiempo: %d seg.\n",
+                carro->id, carro->tipo, carro->lado == 0 ? "Izquierda" : "Derecha", carro->cethread_hilo_id, tiempo_cruce_calculado);
+            sleep(tiempo_cruce_calculado);
+            printf("Carro %d (Tipo: %d, Lado: %s) ha cruzado la calle.\n", carro->id, carro->tipo, carro->lado == 0 ? "Izquierda" : "Derecha");
+        }
+    } else {
+        printf("Carro %d (Tipo: %d, Lado: %s, cethread_id: %d) comienza a cruzar. Tiempo: %d seg.\n",
+            carro->id, carro->tipo, carro->lado == 0 ? "Izquierda" : "Derecha", carro->cethread_hilo_id, tiempo_cruce_calculado);
+
+        sleep(tiempo_cruce_calculado); 
+        printf("Carro %d (Tipo: %d, Lado: %s) ha cruzado la calle.\n", carro->id, carro->tipo, carro->lado == 0 ? "Izquierda" : "Derecha");
+    }
+
+    
 
     cethread_exit(NULL); 
     return NULL; 
@@ -314,7 +344,7 @@ void *simulacion(void *arg) {
                     cethread_mutex_lock(&mutex_contador_carros);
                     carros_que_han_cruzado++;
                     printf("INFO (Simulación): Carros cruzados: %d de %d\n", carros_que_han_cruzado, carros_total_simulacion);
-                    if (carros_total_simulacion > 0 && carros_que_han_cruzado >= carros_total_simulacion) {
+                    if (carros_total_simulacion > 0 && carros_que_han_cruzado >= carros_total_simulacion && cola_derecha.cantidad == 0 && cola_izquierda.cantidad == 0) {
                         todos_han_cruzado_ahora = true;
                     }
                     cethread_mutex_unlock(&mutex_contador_carros); 

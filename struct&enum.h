@@ -47,6 +47,8 @@ typedef struct {
     int tiempo_cruce; // calculado
     int prioridad; // Para algoritmo de prioridad
     int tiempo_maximo; // Para TIEMPO_REAL
+    int tiempo_faltante; // Para RR
+    int posicion_anterior; // Para RR en la interfaz
 } Carro;
 
 // Estructura para la cola de carros
