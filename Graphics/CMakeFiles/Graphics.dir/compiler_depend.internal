@@ -5,6 +5,7 @@ CMakeFiles/Graphics.dir/Graphics_autogen/mocs_compilation.cpp.o
  /home/dennis/Escritorio/ProyectoOp/SO-P1-Carros/Graphics/Graphics_autogen/mocs_compilation.cpp
  /home/dennis/Escritorio/ProyectoOp/SO-P1-Carros/Graphics/SquareWidget.h
  /home/dennis/Escritorio/ProyectoOp/SO-P1-Carros/Graphics/Graphics_autogen/EWIEGA46WW/moc_SquareWidget.cpp
+ /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/QTimer
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/q17memory.h
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/q20algorithm.h
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/q20functional.h
@@ -14,6 +15,7 @@ CMakeFiles/Graphics.dir/Graphics_autogen/mocs_compilation.cpp.o
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/q20utility.h
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/q23type_traits.h
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/q23utility.h
+ /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qabstracteventdispatcher.h
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qalgorithms.h
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qanystringview.h
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qarraydata.h
@@ -23,6 +25,7 @@ CMakeFiles/Graphics.dir/Graphics_autogen/mocs_compilation.cpp.o
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qatomic.h
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qatomic_cxx11.h
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qbasicatomic.h
+ /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qbasictimer.h
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qbindingstorage.h
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qbytearray.h
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qbytearrayalgorithms.h
@@ -41,8 +44,11 @@ CMakeFiles/Graphics.dir/Graphics_autogen/mocs_compilation.cpp.o
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qcontiguouscache.h
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qdarwinhelpers.h
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qdatastream.h
+ /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qdeadlinetimer.h
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qdebug.h
+ /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qelapsedtimer.h
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qendian.h
+ /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qeventloop.h
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qexceptionhandling.h
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qflags.h
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qfloat16.h
@@ -54,6 +60,7 @@ CMakeFiles/Graphics.dir/Graphics_autogen/mocs_compilation.cpp.o
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qglobalstatic.h
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qhash.h
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qhashfunctions.h
+ /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qiodevice.h
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qiodevicebase.h
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qiterable.h
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qiterator.h
@@ -116,6 +123,7 @@ CMakeFiles/Graphics.dir/Graphics_autogen/mocs_compilation.cpp.o
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtenvironmentvariables.h
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtextstream.h
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtformat_impl.h
+ /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtimer.h
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtmetamacros.h
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtmocconstants.h
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtmochelpers.h
@@ -160,6 +168,13 @@ CMakeFiles/Graphics.dir/Graphics_autogen/mocs_compilation.cpp.o
  /home/dennis/Qt/6.9.0/gcc_64/include/QtGui/qtguiglobal.h
  /home/dennis/Qt/6.9.0/gcc_64/include/QtGui/qtransform.h
  /home/dennis/Qt/6.9.0/gcc_64/include/QtGui/qwindowdefs.h
+ /home/dennis/Qt/6.9.0/gcc_64/include/QtNetwork/QTcpSocket
+ /home/dennis/Qt/6.9.0/gcc_64/include/QtNetwork/qabstractsocket.h
+ /home/dennis/Qt/6.9.0/gcc_64/include/QtNetwork/qhostaddress.h
+ /home/dennis/Qt/6.9.0/gcc_64/include/QtNetwork/qtcpsocket.h
+ /home/dennis/Qt/6.9.0/gcc_64/include/QtNetwork/qtnetwork-config.h
+ /home/dennis/Qt/6.9.0/gcc_64/include/QtNetwork/qtnetworkexports.h
+ /home/dennis/Qt/6.9.0/gcc_64/include/QtNetwork/qtnetworkglobal.h
  /home/dennis/Qt/6.9.0/gcc_64/include/QtWidgets/QWidget
  /home/dennis/Qt/6.9.0/gcc_64/include/QtWidgets/qsizepolicy.h
  /home/dennis/Qt/6.9.0/gcc_64/include/QtWidgets/qtwidgets-config.h
@@ -486,11 +501,13 @@ CMakeFiles/Graphics.dir/Graphics_autogen/mocs_compilation.cpp.o
 CMakeFiles/Graphics.dir/SquareWidget.cpp.o
  /home/dennis/Escritorio/ProyectoOp/SO-P1-Carros/Graphics/SquareWidget.cpp
  /home/dennis/Escritorio/ProyectoOp/SO-P1-Carros/Graphics/SquareWidget.h
+ /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/QDebug
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/QList
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/QObject
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/QRect
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/QSize
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/QSizeF
+ /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/QTimer
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/QTimerEvent
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/q17memory.h
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/q20functional.h
@@ -612,6 +629,7 @@ CMakeFiles/Graphics.dir/SquareWidget.cpp.o
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtenvironmentvariables.h
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtextstream.h
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtformat_impl.h
+ /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtimer.h
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtmetamacros.h
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtnoop.h
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtpreprocessorsupport.h
@@ -673,6 +691,14 @@ CMakeFiles/Graphics.dir/SquareWidget.cpp.o
  /home/dennis/Qt/6.9.0/gcc_64/include/QtGui/qvector2d.h
  /home/dennis/Qt/6.9.0/gcc_64/include/QtGui/qvectornd.h
  /home/dennis/Qt/6.9.0/gcc_64/include/QtGui/qwindowdefs.h
+ /home/dennis/Qt/6.9.0/gcc_64/include/QtNetwork/QAbstractSocket
+ /home/dennis/Qt/6.9.0/gcc_64/include/QtNetwork/QTcpSocket
+ /home/dennis/Qt/6.9.0/gcc_64/include/QtNetwork/qabstractsocket.h
+ /home/dennis/Qt/6.9.0/gcc_64/include/QtNetwork/qhostaddress.h
+ /home/dennis/Qt/6.9.0/gcc_64/include/QtNetwork/qtcpsocket.h
+ /home/dennis/Qt/6.9.0/gcc_64/include/QtNetwork/qtnetwork-config.h
+ /home/dennis/Qt/6.9.0/gcc_64/include/QtNetwork/qtnetworkexports.h
+ /home/dennis/Qt/6.9.0/gcc_64/include/QtNetwork/qtnetworkglobal.h
  /home/dennis/Qt/6.9.0/gcc_64/include/QtWidgets/QWidget
  /home/dennis/Qt/6.9.0/gcc_64/include/QtWidgets/qsizepolicy.h
  /home/dennis/Qt/6.9.0/gcc_64/include/QtWidgets/qtwidgets-config.h
@@ -999,6 +1025,7 @@ CMakeFiles/Graphics.dir/SquareWidget.cpp.o
 CMakeFiles/Graphics.dir/main.cpp.o
  /home/dennis/Escritorio/ProyectoOp/SO-P1-Carros/Graphics/main.cpp
  /home/dennis/Escritorio/ProyectoOp/SO-P1-Carros/Graphics/SquareWidget.h
+ /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/QTimer
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/q17memory.h
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/q20functional.h
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/q20iterator.h
@@ -1054,6 +1081,7 @@ CMakeFiles/Graphics.dir/main.cpp.o
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qglobalstatic.h
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qhash.h
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qhashfunctions.h
+ /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qiodevice.h
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qiodevicebase.h
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qiterable.h
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qiterator.h
@@ -1118,6 +1146,7 @@ CMakeFiles/Graphics.dir/main.cpp.o
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtenvironmentvariables.h
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtextstream.h
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtformat_impl.h
+ /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtimer.h
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtmetamacros.h
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtnoop.h
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtpreprocessorsupport.h
@@ -1163,6 +1192,13 @@ CMakeFiles/Graphics.dir/main.cpp.o
  /home/dennis/Qt/6.9.0/gcc_64/include/QtGui/qtguiglobal.h
  /home/dennis/Qt/6.9.0/gcc_64/include/QtGui/qtransform.h
  /home/dennis/Qt/6.9.0/gcc_64/include/QtGui/qwindowdefs.h
+ /home/dennis/Qt/6.9.0/gcc_64/include/QtNetwork/QTcpSocket
+ /home/dennis/Qt/6.9.0/gcc_64/include/QtNetwork/qabstractsocket.h
+ /home/dennis/Qt/6.9.0/gcc_64/include/QtNetwork/qhostaddress.h
+ /home/dennis/Qt/6.9.0/gcc_64/include/QtNetwork/qtcpsocket.h
+ /home/dennis/Qt/6.9.0/gcc_64/include/QtNetwork/qtnetwork-config.h
+ /home/dennis/Qt/6.9.0/gcc_64/include/QtNetwork/qtnetworkexports.h
+ /home/dennis/Qt/6.9.0/gcc_64/include/QtNetwork/qtnetworkglobal.h
  /home/dennis/Qt/6.9.0/gcc_64/include/QtWidgets/QApplication
  /home/dennis/Qt/6.9.0/gcc_64/include/QtWidgets/QWidget
  /home/dennis/Qt/6.9.0/gcc_64/include/QtWidgets/qapplication.h

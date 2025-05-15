@@ -322,6 +322,12 @@ int main(int argc, char *argv[]) {
         printf("INFO: Hilo de teclado (%d) ha terminado.\n", g_hilo_teclado_id);
     }
 
+    if (server_is_client_connected()) {
+        char mensaje[256];
+        // Formatea tu mensaje (ej. estado de un carro)
+        sprintf(mensaje, "CARRO_ID:%d;ESTADO:CRUZANDO;LADO:%d\n", 5, 4);
+        server_send_data_to_client(mensaje, strlen(mensaje));
+    }
 
     printf("INFO: Simulación principal terminada.\n");
 

@@ -38,10 +38,24 @@ template <> constexpr inline auto SquareWidget::qt_create_metaobjectdata<qt_meta
 {
     namespace QMC = QtMocConstants;
     QtMocHelpers::StringRefStorage qt_stringData {
-        "SquareWidget"
+        "SquareWidget",
+        "readServerData",
+        "",
+        "handleSocketError",
+        "QAbstractSocket::SocketError",
+        "error",
+        "tryReconnect"
     };
 
     QtMocHelpers::UintData qt_methods {
+        // Slot 'readServerData'
+        QtMocHelpers::SlotData<void()>(1, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'handleSocketError'
+        QtMocHelpers::SlotData<void(QAbstractSocket::SocketError)>(3, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { 0x80000000 | 4, 5 },
+        }}),
+        // Slot 'tryReconnect'
+        QtMocHelpers::SlotData<void()>(6, 2, QMC::AccessPrivate, QMetaType::Void),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -63,10 +77,26 @@ Q_CONSTINIT const QMetaObject SquareWidget::staticMetaObject = { {
 void SquareWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     auto *_t = static_cast<SquareWidget *>(_o);
-    (void)_t;
-    (void)_c;
-    (void)_id;
-    (void)_a;
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        switch (_id) {
+        case 0: _t->readServerData(); break;
+        case 1: _t->handleSocketError((*reinterpret_cast< std::add_pointer_t<QAbstractSocket::SocketError>>(_a[1]))); break;
+        case 2: _t->tryReconnect(); break;
+        default: ;
+        }
+    }
+    if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+        switch (_id) {
+        default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
+        case 1:
+            switch (*reinterpret_cast<int*>(_a[1])) {
+            default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
+            case 0:
+                *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType::fromType< QAbstractSocket::SocketError >(); break;
+            }
+            break;
+        }
+    }
 }
 
 const QMetaObject *SquareWidget::metaObject() const
@@ -85,6 +115,18 @@ void *SquareWidget::qt_metacast(const char *_clname)
 int SquareWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
     _id = QWidget::qt_metacall(_c, _id, _a);
+    if (_id < 0)
+        return _id;
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        if (_id < 3)
+            qt_static_metacall(this, _c, _id, _a);
+        _id -= 3;
+    }
+    if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+        if (_id < 3)
+            qt_static_metacall(this, _c, _id, _a);
+        _id -= 3;
+    }
     return _id;
 }
 QT_WARNING_POP

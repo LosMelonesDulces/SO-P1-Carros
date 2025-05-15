@@ -4,6 +4,7 @@
 CMakeFiles/Graphics.dir/Graphics_autogen/mocs_compilation.cpp.o: Graphics_autogen/mocs_compilation.cpp \
   SquareWidget.h \
   Graphics_autogen/EWIEGA46WW/moc_SquareWidget.cpp \
+  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/QTimer \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/q17memory.h \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/q20algorithm.h \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/q20functional.h \
@@ -13,6 +14,7 @@ CMakeFiles/Graphics.dir/Graphics_autogen/mocs_compilation.cpp.o: Graphics_autoge
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/q20utility.h \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/q23type_traits.h \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/q23utility.h \
+  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qabstracteventdispatcher.h \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qalgorithms.h \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qanystringview.h \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qarraydata.h \
@@ -22,6 +24,7 @@ CMakeFiles/Graphics.dir/Graphics_autogen/mocs_compilation.cpp.o: Graphics_autoge
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qatomic.h \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qatomic_cxx11.h \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qbasicatomic.h \
+  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qbasictimer.h \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qbindingstorage.h \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qbytearray.h \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qbytearrayalgorithms.h \
@@ -40,8 +43,11 @@ CMakeFiles/Graphics.dir/Graphics_autogen/mocs_compilation.cpp.o: Graphics_autoge
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qcontiguouscache.h \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qdarwinhelpers.h \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qdatastream.h \
+  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qdeadlinetimer.h \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qdebug.h \
+  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qelapsedtimer.h \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qendian.h \
+  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qeventloop.h \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qexceptionhandling.h \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qflags.h \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qfloat16.h \
@@ -53,6 +59,7 @@ CMakeFiles/Graphics.dir/Graphics_autogen/mocs_compilation.cpp.o: Graphics_autoge
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qglobalstatic.h \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qhash.h \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qhashfunctions.h \
+  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qiodevice.h \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qiodevicebase.h \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qiterable.h \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qiterator.h \
@@ -115,6 +122,7 @@ CMakeFiles/Graphics.dir/Graphics_autogen/mocs_compilation.cpp.o: Graphics_autoge
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtenvironmentvariables.h \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtextstream.h \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtformat_impl.h \
+  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtimer.h \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtmetamacros.h \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtmocconstants.h \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtmochelpers.h \
@@ -159,6 +167,13 @@ CMakeFiles/Graphics.dir/Graphics_autogen/mocs_compilation.cpp.o: Graphics_autoge
   /home/dennis/Qt/6.9.0/gcc_64/include/QtGui/qtguiglobal.h \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtGui/qtransform.h \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtGui/qwindowdefs.h \
+  /home/dennis/Qt/6.9.0/gcc_64/include/QtNetwork/QTcpSocket \
+  /home/dennis/Qt/6.9.0/gcc_64/include/QtNetwork/qabstractsocket.h \
+  /home/dennis/Qt/6.9.0/gcc_64/include/QtNetwork/qhostaddress.h \
+  /home/dennis/Qt/6.9.0/gcc_64/include/QtNetwork/qtcpsocket.h \
+  /home/dennis/Qt/6.9.0/gcc_64/include/QtNetwork/qtnetwork-config.h \
+  /home/dennis/Qt/6.9.0/gcc_64/include/QtNetwork/qtnetworkexports.h \
+  /home/dennis/Qt/6.9.0/gcc_64/include/QtNetwork/qtnetworkglobal.h \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtWidgets/QWidget \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtWidgets/qsizepolicy.h \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtWidgets/qtwidgets-config.h \
@@ -484,11 +499,13 @@ CMakeFiles/Graphics.dir/Graphics_autogen/mocs_compilation.cpp.o: Graphics_autoge
 
 CMakeFiles/Graphics.dir/SquareWidget.cpp.o: SquareWidget.cpp \
   SquareWidget.h \
+  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/QDebug \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/QList \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/QObject \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/QRect \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/QSize \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/QSizeF \
+  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/QTimer \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/QTimerEvent \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/q17memory.h \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/q20functional.h \
@@ -610,6 +627,7 @@ CMakeFiles/Graphics.dir/SquareWidget.cpp.o: SquareWidget.cpp \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtenvironmentvariables.h \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtextstream.h \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtformat_impl.h \
+  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtimer.h \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtmetamacros.h \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtnoop.h \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtpreprocessorsupport.h \
@@ -671,6 +689,14 @@ CMakeFiles/Graphics.dir/SquareWidget.cpp.o: SquareWidget.cpp \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtGui/qvector2d.h \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtGui/qvectornd.h \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtGui/qwindowdefs.h \
+  /home/dennis/Qt/6.9.0/gcc_64/include/QtNetwork/QAbstractSocket \
+  /home/dennis/Qt/6.9.0/gcc_64/include/QtNetwork/QTcpSocket \
+  /home/dennis/Qt/6.9.0/gcc_64/include/QtNetwork/qabstractsocket.h \
+  /home/dennis/Qt/6.9.0/gcc_64/include/QtNetwork/qhostaddress.h \
+  /home/dennis/Qt/6.9.0/gcc_64/include/QtNetwork/qtcpsocket.h \
+  /home/dennis/Qt/6.9.0/gcc_64/include/QtNetwork/qtnetwork-config.h \
+  /home/dennis/Qt/6.9.0/gcc_64/include/QtNetwork/qtnetworkexports.h \
+  /home/dennis/Qt/6.9.0/gcc_64/include/QtNetwork/qtnetworkglobal.h \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtWidgets/QWidget \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtWidgets/qsizepolicy.h \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtWidgets/qtwidgets-config.h \
@@ -996,6 +1022,7 @@ CMakeFiles/Graphics.dir/SquareWidget.cpp.o: SquareWidget.cpp \
 
 CMakeFiles/Graphics.dir/main.cpp.o: main.cpp \
   SquareWidget.h \
+  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/QTimer \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/q17memory.h \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/q20functional.h \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/q20iterator.h \
@@ -1051,6 +1078,7 @@ CMakeFiles/Graphics.dir/main.cpp.o: main.cpp \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qglobalstatic.h \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qhash.h \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qhashfunctions.h \
+  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qiodevice.h \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qiodevicebase.h \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qiterable.h \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qiterator.h \
@@ -1115,6 +1143,7 @@ CMakeFiles/Graphics.dir/main.cpp.o: main.cpp \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtenvironmentvariables.h \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtextstream.h \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtformat_impl.h \
+  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtimer.h \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtmetamacros.h \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtnoop.h \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtpreprocessorsupport.h \
@@ -1160,6 +1189,13 @@ CMakeFiles/Graphics.dir/main.cpp.o: main.cpp \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtGui/qtguiglobal.h \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtGui/qtransform.h \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtGui/qwindowdefs.h \
+  /home/dennis/Qt/6.9.0/gcc_64/include/QtNetwork/QTcpSocket \
+  /home/dennis/Qt/6.9.0/gcc_64/include/QtNetwork/qabstractsocket.h \
+  /home/dennis/Qt/6.9.0/gcc_64/include/QtNetwork/qhostaddress.h \
+  /home/dennis/Qt/6.9.0/gcc_64/include/QtNetwork/qtcpsocket.h \
+  /home/dennis/Qt/6.9.0/gcc_64/include/QtNetwork/qtnetwork-config.h \
+  /home/dennis/Qt/6.9.0/gcc_64/include/QtNetwork/qtnetworkexports.h \
+  /home/dennis/Qt/6.9.0/gcc_64/include/QtNetwork/qtnetworkglobal.h \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtWidgets/QApplication \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtWidgets/QWidget \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtWidgets/qapplication.h \
@@ -1512,17 +1548,7 @@ main.cpp:
 
 /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qlocale.h:
 
-/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qeventloop.h:
-
-/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qdeadlinetimer.h:
-
 /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qcoreevent.h:
-
-/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qbasictimer.h:
-
-/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qelapsedtimer.h:
-
-/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/QSizeF:
 
 /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/QObject:
 
@@ -1642,12 +1668,6 @@ SquareWidget.cpp:
 
 /usr/include/x86_64-linux-gnu/bits/floatn-common.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/11/include/stdbool.h:
-
-/usr/include/x86_64-linux-gnu/c++/11/bits/atomic_word.h:
-
-/usr/include/x86_64-linux-gnu/bits/errno.h:
-
 /usr/include/x86_64-linux-gnu/bits/stdint-intn.h:
 
 /usr/include/x86_64-linux-gnu/bits/endianness.h:
@@ -1726,13 +1746,29 @@ SquareWidget.cpp:
 
 /usr/include/c++/11/tr1/poly_laguerre.tcc:
 
-/home/dennis/Qt/6.9.0/gcc_64/include/QtWidgets/qwidget.h:
+/usr/include/math.h:
 
-/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qstring.h:
+/usr/include/c++/11/tr1/poly_hermite.tcc:
 
-/home/dennis/Qt/6.9.0/gcc_64/include/QtWidgets/qtwidgetsglobal.h:
+/usr/include/c++/11/tr1/legendre_function.tcc:
 
-/home/dennis/Qt/6.9.0/gcc_64/include/QtWidgets/qtwidgetsexports.h:
+/usr/include/c++/11/tr1/hypergeometric.tcc:
+
+/usr/include/c++/11/tr1/gamma.tcc:
+
+/usr/include/c++/11/tr1/exp_integral.tcc:
+
+/usr/include/c++/11/tr1/ell_integral.tcc:
+
+/usr/include/c++/11/tr1/bessel_function.tcc:
+
+/usr/include/c++/11/string_view:
+
+/usr/include/c++/11/string:
+
+/home/dennis/Qt/6.9.0/gcc_64/include/QtGui/qvectornd.h:
+
+/usr/include/c++/11/stdexcept:
 
 /home/dennis/Qt/6.9.0/gcc_64/include/QtGui/qtguiglobal.h:
 
@@ -1746,15 +1782,11 @@ SquareWidget.cpp:
 
 /usr/include/c++/11/bits/atomic_base.h:
 
-/usr/include/x86_64-linux-gnu/bits/types.h:
-
-/usr/include/x86_64-linux-gnu/bits/posix_opt.h:
-
-/home/dennis/Qt/6.9.0/gcc_64/include/QtGui/qtransform.h:
-
 /home/dennis/Qt/6.9.0/gcc_64/include/QtGui/qfontmetrics.h:
 
 /usr/include/c++/11/limits:
+
+/home/dennis/Qt/6.9.0/gcc_64/include/QtNetwork/QAbstractSocket:
 
 /home/dennis/Qt/6.9.0/gcc_64/include/QtGui/qbrush.h:
 
@@ -1780,14 +1812,6 @@ SquareWidget.cpp:
 
 /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtmetamacros.h:
 
-/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qscopeguard.h:
-
-/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qiodevice.h:
-
-/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtextstream.h:
-
-/usr/include/c++/11/bits/stl_tempbuf.h:
-
 /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtnoop.h:
 
 /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtcore-config.h:
@@ -1804,15 +1828,19 @@ SquareWidget.cpp:
 
 /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qsystemdetection.h:
 
-/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qstringview.h:
+/usr/lib/gcc/x86_64-linux-gnu/11/include/stdbool.h:
 
-/home/dennis/Qt/6.9.0/gcc_64/include/QtWidgets/qtwidgets-config.h:
+/usr/include/x86_64-linux-gnu/c++/11/bits/atomic_word.h:
+
+/usr/include/x86_64-linux-gnu/bits/errno.h:
+
+/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtimer.h:
+
+/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qstringview.h:
 
 /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qstringtokenizer.h:
 
 /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qstringmatcher.h:
-
-/usr/include/c++/11/tr1/hypergeometric.tcc:
 
 /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qstringliteral.h:
 
@@ -1824,16 +1852,6 @@ SquareWidget.cpp:
 
 /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qbytearraylist.h:
 
-/usr/include/x86_64-linux-gnu/asm/unistd_64.h:
-
-/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qspan.h:
-
-/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qbytearrayalgorithms.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/time_t.h:
-
-/home/dennis/Qt/6.9.0/gcc_64/include/QtGui/qpixelformat.h:
-
 /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qsharedpointer.h:
 
 /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/QSize:
@@ -1842,25 +1860,17 @@ SquareWidget.cpp:
 
 /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qshareddata.h:
 
-/home/dennis/Qt/6.9.0/gcc_64/include/QtGui/qrgb.h:
+/usr/include/c++/11/streambuf:
 
-/usr/include/c++/11/bits/uses_allocator_args.h:
+/usr/include/c++/11/ext/atomicity.h:
 
-/usr/include/x86_64-linux-gnu/bits/getopt_posix.h:
+/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/QDebug:
 
-/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qscopedpointer.h:
-
-/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qcontainertools_impl.h:
-
-/home/dennis/Qt/6.9.0/gcc_64/include/QtGui/qwindowdefs.h:
+/usr/include/c++/11/compare:
 
 /home/dennis/Qt/6.9.0/gcc_64/include/QtGui/qregion.h:
 
 /usr/include/c++/11/bits/basic_string.h:
-
-/usr/include/asm-generic/errno-base.h:
-
-/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qset.h:
 
 /usr/include/c++/11/backward/auto_ptr.h:
 
@@ -1868,7 +1878,27 @@ SquareWidget.cpp:
 
 /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qrect.h:
 
-/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qalgorithms.h:
+/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qutf8stringview.h:
+
+/usr/include/c++/11/unordered_set:
+
+/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtypes.h:
+
+/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qstring.h:
+
+/home/dennis/Qt/6.9.0/gcc_64/include/QtWidgets/qwidget.h:
+
+/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qprocessordetection.h:
+
+/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qstringfwd.h:
+
+/usr/include/x86_64-linux-gnu/c++/11/bits/gthr-default.h:
+
+/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qpair.h:
+
+/usr/include/c++/11/system_error:
+
+/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtmocconstants.h:
 
 /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtformat_impl.h:
 
@@ -1886,21 +1916,11 @@ SquareWidget.cpp:
 
 /usr/include/c++/11/bits/atomic_wait.h:
 
-/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtconfigmacros.h:
-
-/home/dennis/Qt/6.9.0/gcc_64/include/QtWidgets/qsizepolicy.h:
-
-/usr/include/c++/11/ext/concurrence.h:
-
 /home/dennis/Qt/6.9.0/gcc_64/include/QtGui/qfontinfo.h:
 
 /usr/include/c++/11/bits/exception_ptr.h:
 
 /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qcompare_impl.h:
-
-/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qurl.h:
-
-/home/dennis/Qt/6.9.0/gcc_64/include/QtGui/qpalette.h:
 
 /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/q20algorithm.h:
 
@@ -1911,6 +1931,10 @@ SquareWidget.cpp:
 /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qlogging.h:
 
 /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qobject_impl.h:
+
+/home/dennis/Qt/6.9.0/gcc_64/include/QtNetwork/qtnetworkglobal.h:
+
+/home/dennis/Qt/6.9.0/gcc_64/include/QtNetwork/qtnetworkexports.h:
 
 /home/dennis/Qt/6.9.0/gcc_64/include/QtWidgets/QApplication:
 
@@ -1924,18 +1948,6 @@ SquareWidget.cpp:
 
 /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qgenericatomic.h:
 
-/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtdeprecationdefinitions.h:
-
-/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qcontainerfwd.h:
-
-/usr/include/x86_64-linux-gnu/bits/timesize.h:
-
-SquareWidget.h:
-
-/usr/include/x86_64-linux-gnu/bits/syscall.h:
-
-/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qarraydataops.h:
-
 /home/dennis/Qt/6.9.0/gcc_64/include/QtGui/qkeysequence.h:
 
 /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qatomic_cxx11.h:
@@ -1948,17 +1960,27 @@ SquareWidget.h:
 
 /usr/include/c++/11/ostream:
 
-/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qabstracteventdispatcher.h:
+/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qbytearrayalgorithms.h:
 
-/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtcoreglobal.h:
+/usr/include/x86_64-linux-gnu/bits/types/time_t.h:
 
-/usr/include/c++/11/ext/atomicity.h:
+/home/dennis/Qt/6.9.0/gcc_64/include/QtGui/qpixelformat.h:
 
-/usr/include/c++/11/streambuf:
+/usr/include/x86_64-linux-gnu/asm/unistd_64.h:
+
+/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qspan.h:
 
 /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qarraydatapointer.h:
 
 /usr/include/c++/11/ext/string_conversions.h:
+
+/usr/include/x86_64-linux-gnu/bits/types.h:
+
+/usr/include/x86_64-linux-gnu/bits/posix_opt.h:
+
+/home/dennis/Qt/6.9.0/gcc_64/include/QtGui/qtransform.h:
+
+/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/QTimer:
 
 /home/dennis/Qt/6.9.0/gcc_64/include/QtGui/qcolor.h:
 
@@ -1968,13 +1990,31 @@ SquareWidget.h:
 
 /usr/include/c++/11/functional:
 
+/usr/include/x86_64-linux-gnu/bits/timesize.h:
+
+SquareWidget.h:
+
+/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtdeprecationdefinitions.h:
+
+/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qcontainerfwd.h:
+
 /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qdatastream.h:
+
+/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtcoreglobal.h:
+
+/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qabstracteventdispatcher.h:
+
+/home/dennis/Qt/6.9.0/gcc_64/include/QtGui/qwindowdefs.h:
+
+/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qcontainertools_impl.h:
+
+/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qalgorithms.h:
 
 /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qswap.h:
 
-/usr/include/c++/11/bits/range_access.h:
-
 /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qchar.h:
+
+/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qeventloop.h:
 
 /usr/include/c++/11/bits/ostream.tcc:
 
@@ -1984,25 +2024,11 @@ SquareWidget.h:
 
 /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/q20iterator.h:
 
-/usr/include/c++/11/tr1/riemann_zeta.tcc:
-
-/usr/include/c++/11/initializer_list:
-
-/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qfunctionpointer.h:
+/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qbasictimer.h:
 
 /usr/include/x86_64-linux-gnu/gnu/stubs.h:
 
 /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/q23type_traits.h:
-
-/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/QList:
-
-/usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h:
-
-/usr/include/c++/11/bits/char_traits.h:
-
-/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qrefcount.h:
-
-/usr/include/c++/11/compare:
 
 /usr/include/c++/11/pstl/glue_algorithm_defs.h:
 
@@ -2019,6 +2045,12 @@ SquareWidget.h:
 /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/q20utility.h:
 
 /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qarraydata.h:
+
+/usr/include/c++/11/tr1/modified_bessel_func.tcc:
+
+/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qiterator.h:
+
+/usr/include/c++/11/bits/stl_tempbuf.h:
 
 /home/dennis/Qt/6.9.0/gcc_64/include/QtGui/qvector2d.h:
 
@@ -2038,13 +2070,17 @@ SquareWidget.h:
 
 /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qmap.h:
 
-/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qstringfwd.h:
-
 /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qassert.h:
 
 /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qstringlist.h:
 
 /usr/include/c++/11/bits/allocator.h:
+
+/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qoverload.h:
+
+/home/dennis/Qt/6.9.0/gcc_64/include/QtGui/qtgui-config.h:
+
+/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qshareddata_impl.h:
 
 /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qconstructormacros.h:
 
@@ -2058,6 +2094,8 @@ SquareWidget.h:
 
 /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qcomparehelpers.h:
 
+/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qdeadlinetimer.h:
+
 /home/dennis/Qt/6.9.0/gcc_64/include/QtGui/qfontvariableaxis.h:
 
 /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qexceptionhandling.h:
@@ -2070,21 +2108,41 @@ SquareWidget.h:
 
 /usr/include/c++/11/bits/streambuf.tcc:
 
+/usr/include/x86_64-linux-gnu/bits/syscall.h:
+
+/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qarraydataops.h:
+
+/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qscopeguard.h:
+
+/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qset.h:
+
+/usr/include/asm-generic/errno-base.h:
+
 /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qstringconverter_base.h:
 
 /usr/include/c++/11/bits/unique_ptr.h:
 
 /usr/include/c++/11/ext/type_traits.h:
 
-/usr/include/c++/11/string:
-
 /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qmetatype.h:
 
+/home/dennis/Qt/6.9.0/gcc_64/include/QtGui/qrgb.h:
+
+/usr/include/c++/11/bits/uses_allocator_args.h:
+
+/usr/include/x86_64-linux-gnu/bits/getopt_posix.h:
+
+/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qscopedpointer.h:
+
+/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/QList:
+
+/usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h:
+
+/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qrefcount.h:
+
+/usr/include/c++/11/bits/char_traits.h:
+
 /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qdebug.h:
-
-/usr/include/math.h:
-
-/usr/include/c++/11/tr1/poly_hermite.tcc:
 
 /usr/include/c++/11/bits/functional_hash.h:
 
@@ -2097,14 +2155,6 @@ SquareWidget.h:
 /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qbytearrayview.h:
 
 /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qmargins.h:
-
-/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qutf8stringview.h:
-
-/usr/include/c++/11/unordered_set:
-
-/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtypes.h:
-
-/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qprocessordetection.h:
 
 /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qflags.h:
 
@@ -2128,6 +2178,10 @@ SquareWidget.h:
 
 /usr/include/c++/11/bits/stl_iterator_base_types.h:
 
+/usr/include/string.h:
+
+/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qglobal.h:
+
 /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qlatin1stringview.h:
 
 /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qanystringview.h:
@@ -2148,13 +2202,19 @@ SquareWidget.h:
 
 /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qcontainerinfo.h:
 
-/usr/include/c++/11/tr1/ell_integral.tcc:
-
 /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qlist.h:
+
+/usr/include/c++/11/numeric:
+
+/usr/include/c++/11/optional:
 
 /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qconfig.h:
 
 /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qhashfunctions.h:
+
+/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/QSizeF:
+
+/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qelapsedtimer.h:
 
 /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qmalloc.h:
 
@@ -2166,35 +2226,79 @@ SquareWidget.h:
 
 /usr/include/c++/11/climits:
 
-/usr/include/x86_64-linux-gnu/c++/11/bits/gthr-default.h:
-
-/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qpair.h:
-
 /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qminmax.h:
 
 /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qcontiguouscache.h:
 
 /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qobject.h:
 
-/usr/include/string.h:
+/usr/include/c++/11/bits/range_access.h:
 
-/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qglobal.h:
+/home/dennis/Qt/6.9.0/gcc_64/include/QtNetwork/QTcpSocket:
 
-/home/dennis/Qt/6.9.0/gcc_64/include/QtGui/qtgui-config.h:
+/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qiodevice.h:
 
-/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qshareddata_impl.h:
+/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtextstream.h:
 
-/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qoverload.h:
+/home/dennis/Qt/6.9.0/gcc_64/include/QtNetwork/qabstractsocket.h:
 
-/usr/include/asm-generic/errno.h:
+/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qcoreapplication_platform.h:
 
-/usr/include/assert.h:
+/usr/include/c++/11/bits/ranges_cmp.h:
+
+/usr/include/c++/11/bits/stl_uninitialized.h:
+
+/usr/include/c++/11/cwctype:
+
+/home/dennis/Qt/6.9.0/gcc_64/include/QtNetwork/qhostaddress.h:
+
+/usr/include/c++/11/ext/alloc_traits.h:
+
+/usr/include/c++/11/bits/charconv.h:
+
+/home/dennis/Qt/6.9.0/gcc_64/include/QtGui/qinputmethod.h:
+
+/usr/include/c++/11/bits/locale_facets.h:
+
+/home/dennis/Qt/6.9.0/gcc_64/include/QtNetwork/qtcpsocket.h:
+
+/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qnumeric.h:
+
+/usr/include/c++/11/exception:
+
+/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qurl.h:
+
+/home/dennis/Qt/6.9.0/gcc_64/include/QtGui/qpalette.h:
+
+/home/dennis/Qt/6.9.0/gcc_64/include/QtNetwork/qtnetwork-config.h:
 
 Graphics_autogen/EWIEGA46WW/moc_SquareWidget.cpp:
 
 /usr/include/c++/11/algorithm:
 
 /usr/include/c++/11/bits/stl_vector.h:
+
+/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtconfigmacros.h:
+
+/home/dennis/Qt/6.9.0/gcc_64/include/QtWidgets/qsizepolicy.h:
+
+/usr/include/c++/11/ext/concurrence.h:
+
+/usr/include/c++/11/tr1/riemann_zeta.tcc:
+
+/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qfunctionpointer.h:
+
+/usr/include/c++/11/initializer_list:
+
+/home/dennis/Qt/6.9.0/gcc_64/include/QtWidgets/qtwidgets-config.h:
+
+/home/dennis/Qt/6.9.0/gcc_64/include/QtWidgets/qtwidgetsexports.h:
+
+/home/dennis/Qt/6.9.0/gcc_64/include/QtWidgets/qtwidgetsglobal.h:
+
+/usr/include/asm-generic/errno.h:
+
+/usr/include/assert.h:
 
 /usr/include/c++/11/atomic:
 
@@ -2232,23 +2336,11 @@ Graphics_autogen/mocs_compilation.cpp:
 
 /usr/include/c++/11/bits/uniform_int_dist.h:
 
-/usr/include/c++/11/ext/alloc_traits.h:
-
-/usr/include/c++/11/bits/charconv.h:
-
-/home/dennis/Qt/6.9.0/gcc_64/include/QtGui/qinputmethod.h:
-
-/usr/include/c++/11/bits/locale_facets.h:
-
 /usr/include/c++/11/bits/concept_check.h:
 
 /usr/include/c++/11/bits/cxxabi_forced.h:
 
 /usr/include/c++/11/set:
-
-/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtmocconstants.h:
-
-/usr/include/c++/11/system_error:
 
 /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qendian.h:
 
@@ -2257,6 +2349,12 @@ Graphics_autogen/mocs_compilation.cpp:
 /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h:
 
 /usr/include/c++/11/bits/enable_special_members.h:
+
+/usr/include/c++/11/tr1/beta_function.tcc:
+
+/usr/include/c++/11/ext/aligned_buffer.h:
+
+/usr/include/c++/11/bits/erase_if.h:
 
 /home/dennis/Qt/6.9.0/gcc_64/include/QtGui/qtextoption.h:
 
@@ -2269,10 +2367,6 @@ Graphics_autogen/mocs_compilation.cpp:
 /usr/include/c++/11/tuple:
 
 /usr/include/c++/11/bits/hash_bytes.h:
-
-/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qiterator.h:
-
-/usr/include/c++/11/tr1/modified_bessel_func.tcc:
 
 /usr/include/c++/11/bits/hashtable.h:
 
@@ -2314,9 +2408,9 @@ Graphics_autogen/mocs_compilation.cpp:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h:
 
-/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/q23utility.h:
-
 /usr/include/c++/11/cstdlib:
+
+/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/q23utility.h:
 
 /usr/include/c++/11/bits/max_size_type.h:
 
@@ -2350,14 +2444,6 @@ Graphics_autogen/mocs_compilation.cpp:
 
 /usr/include/c++/11/bits/ranges_base.h:
 
-/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qcoreapplication_platform.h:
-
-/usr/include/c++/11/bits/ranges_cmp.h:
-
-/usr/include/c++/11/bits/stl_uninitialized.h:
-
-/usr/include/c++/11/cwctype:
-
 /usr/include/x86_64-linux-gnu/bits/waitflags.h:
 
 /usr/include/c++/11/bits/ranges_uninitialized.h:
@@ -2386,8 +2472,6 @@ Graphics_autogen/mocs_compilation.cpp:
 
 /usr/include/c++/11/bits/stl_function.h:
 
-/usr/include/c++/11/string_view:
-
 /usr/include/c++/11/iosfwd:
 
 /usr/include/c++/11/bits/stl_iterator_base_funcs.h:
@@ -2409,8 +2493,6 @@ Graphics_autogen/mocs_compilation.cpp:
 /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtcoreexports.h:
 
 /usr/include/c++/11/bits/stl_multiset.h:
-
-/usr/include/c++/11/tr1/bessel_function.tcc:
 
 /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qttranslation.h:
 
@@ -2470,10 +2552,6 @@ Graphics_autogen/mocs_compilation.cpp:
 
 /usr/include/c++/11/pstl/pstl_config.h:
 
-/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qnumeric.h:
-
-/usr/include/c++/11/exception:
-
 /usr/lib/gcc/x86_64-linux-gnu/11/include/stdint.h:
 
 /usr/include/c++/11/cwchar:
@@ -2492,10 +2570,6 @@ Graphics_autogen/mocs_compilation.cpp:
 
 /usr/include/c++/11/map:
 
-/usr/include/c++/11/optional:
-
-/usr/include/c++/11/numeric:
-
 /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h:
 
 /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qttypetraits.h:
@@ -2509,19 +2583,3 @@ Graphics_autogen/mocs_compilation.cpp:
 /usr/include/x86_64-linux-gnu/asm/unistd.h:
 
 /usr/include/c++/11/ratio:
-
-/home/dennis/Qt/6.9.0/gcc_64/include/QtGui/qvectornd.h:
-
-/usr/include/c++/11/stdexcept:
-
-/usr/include/c++/11/ext/aligned_buffer.h:
-
-/usr/include/c++/11/bits/erase_if.h:
-
-/usr/include/c++/11/tr1/beta_function.tcc:
-
-/usr/include/c++/11/tr1/exp_integral.tcc:
-
-/usr/include/c++/11/tr1/gamma.tcc:
-
-/usr/include/c++/11/tr1/legendre_function.tcc:
