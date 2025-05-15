@@ -3,7 +3,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -std=c11
 
 # Archivos fuente
-SRCS = calendarizacion.c algoritmos_calendarizacion.c cethreads.c simulacion.c
+SRCS = calendarizacion.c algoritmos_calendarizacion.c cethreads.c simulacion.c socket_server.c
 
 # Archivos objeto (reemplaza .c por .o)
 OBJS = $(SRCS:.c=.o)
