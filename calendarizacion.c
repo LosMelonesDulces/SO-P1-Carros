@@ -276,6 +276,9 @@ int main(int argc, char *argv[]) {
     server_init(DEFAULT_PORT); // O el puerto que desees
     server_start_listening_thread(); // Inicia el servidor en un hilo separado
 
+    printf("Presione cualquier tecla para continuar...\n");
+    getchar();
+
     if (server_is_client_connected()) {
         char mensaje[256];
         // Formatea tu mensaje (ej. estado de un carro)
