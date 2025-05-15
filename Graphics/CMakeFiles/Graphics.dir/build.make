@@ -128,6 +128,7 @@ Graphics: CMakeFiles/Graphics.dir/main.cpp.o
 Graphics: CMakeFiles/Graphics.dir/SquareWidget.cpp.o
 Graphics: CMakeFiles/Graphics.dir/build.make
 Graphics: /home/dennis/Qt/6.9.0/gcc_64/lib/libQt6Widgets.so.6.9.0
+Graphics: /home/dennis/Qt/6.9.0/gcc_64/lib/libQt6Network.so.6.9.0
 Graphics: /home/dennis/Qt/6.9.0/gcc_64/lib/libQt6Gui.so.6.9.0
 Graphics: /usr/lib/x86_64-linux-gnu/libGLX.so
 Graphics: /usr/lib/x86_64-linux-gnu/libOpenGL.so

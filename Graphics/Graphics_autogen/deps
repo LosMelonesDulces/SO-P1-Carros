@@ -7,6 +7,7 @@ Graphics_autogen/timestamp: \
 	/home/dennis/Escritorio/ProyectoOp/SO-P1-Carros/Graphics/SquareWidget.cpp \
 	/home/dennis/Escritorio/ProyectoOp/SO-P1-Carros/Graphics/SquareWidget.h \
 	/home/dennis/Escritorio/ProyectoOp/SO-P1-Carros/Graphics/main.cpp \
+	/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/QTimer \
 	/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/q17memory.h \
 	/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/q20functional.h \
 	/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/q20iterator.h \
@@ -14,6 +15,7 @@ Graphics_autogen/timestamp: \
 	/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/q20type_traits.h \
 	/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/q20utility.h \
 	/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/q23utility.h \
+	/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qabstracteventdispatcher.h \
 	/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qalgorithms.h \
 	/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qanystringview.h \
 	/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qarraydata.h \
@@ -23,6 +25,7 @@ Graphics_autogen/timestamp: \
 	/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qatomic.h \
 	/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qatomic_cxx11.h \
 	/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qbasicatomic.h \
+	/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qbasictimer.h \
 	/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qbindingstorage.h \
 	/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qbytearray.h \
 	/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qbytearrayalgorithms.h \
@@ -41,8 +44,11 @@ Graphics_autogen/timestamp: \
 	/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qcontiguouscache.h \
 	/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qdarwinhelpers.h \
 	/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qdatastream.h \
+	/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qdeadlinetimer.h \
 	/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qdebug.h \
+	/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qelapsedtimer.h \
 	/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qendian.h \
+	/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qeventloop.h \
 	/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qexceptionhandling.h \
 	/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qflags.h \
 	/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qfloat16.h \
@@ -54,6 +60,7 @@ Graphics_autogen/timestamp: \
 	/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qglobalstatic.h \
 	/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qhash.h \
 	/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qhashfunctions.h \
+	/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qiodevice.h \
 	/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qiodevicebase.h \
 	/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qiterable.h \
 	/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qiterator.h \
@@ -116,6 +123,7 @@ Graphics_autogen/timestamp: \
 	/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtenvironmentvariables.h \
 	/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtextstream.h \
 	/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtformat_impl.h \
+	/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtimer.h \
 	/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtmetamacros.h \
 	/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtnoop.h \
 	/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtpreprocessorsupport.h \
@@ -158,6 +166,13 @@ Graphics_autogen/timestamp: \
 	/home/dennis/Qt/6.9.0/gcc_64/include/QtGui/qtguiglobal.h \
 	/home/dennis/Qt/6.9.0/gcc_64/include/QtGui/qtransform.h \
 	/home/dennis/Qt/6.9.0/gcc_64/include/QtGui/qwindowdefs.h \
+	/home/dennis/Qt/6.9.0/gcc_64/include/QtNetwork/QTcpSocket \
+	/home/dennis/Qt/6.9.0/gcc_64/include/QtNetwork/qabstractsocket.h \
+	/home/dennis/Qt/6.9.0/gcc_64/include/QtNetwork/qhostaddress.h \
+	/home/dennis/Qt/6.9.0/gcc_64/include/QtNetwork/qtcpsocket.h \
+	/home/dennis/Qt/6.9.0/gcc_64/include/QtNetwork/qtnetwork-config.h \
+	/home/dennis/Qt/6.9.0/gcc_64/include/QtNetwork/qtnetworkexports.h \
+	/home/dennis/Qt/6.9.0/gcc_64/include/QtNetwork/qtnetworkglobal.h \
 	/home/dennis/Qt/6.9.0/gcc_64/include/QtWidgets/QWidget \
 	/home/dennis/Qt/6.9.0/gcc_64/include/QtWidgets/qsizepolicy.h \
 	/home/dennis/Qt/6.9.0/gcc_64/include/QtWidgets/qtwidgets-config.h \
@@ -396,6 +411,38 @@ Graphics_autogen/timestamp: \
 	/home/dennis/Qt/6.9.0/gcc_64/lib/cmake/Qt6GuiTools/Qt6GuiToolsTargets-relwithdebinfo.cmake \
 	/home/dennis/Qt/6.9.0/gcc_64/lib/cmake/Qt6GuiTools/Qt6GuiToolsTargets.cmake \
 	/home/dennis/Qt/6.9.0/gcc_64/lib/cmake/Qt6GuiTools/Qt6GuiToolsVersionlessTargets.cmake \
+	/home/dennis/Qt/6.9.0/gcc_64/lib/cmake/Qt6Network/Qt6NetworkAdditionalTargetInfo.cmake \
+	/home/dennis/Qt/6.9.0/gcc_64/lib/cmake/Qt6Network/Qt6NetworkConfig.cmake \
+	/home/dennis/Qt/6.9.0/gcc_64/lib/cmake/Qt6Network/Qt6NetworkConfigVersion.cmake \
+	/home/dennis/Qt/6.9.0/gcc_64/lib/cmake/Qt6Network/Qt6NetworkConfigVersionImpl.cmake \
+	/home/dennis/Qt/6.9.0/gcc_64/lib/cmake/Qt6Network/Qt6NetworkDependencies.cmake \
+	/home/dennis/Qt/6.9.0/gcc_64/lib/cmake/Qt6Network/Qt6NetworkPlugins.cmake \
+	/home/dennis/Qt/6.9.0/gcc_64/lib/cmake/Qt6Network/Qt6NetworkTargets-relwithdebinfo.cmake \
+	/home/dennis/Qt/6.9.0/gcc_64/lib/cmake/Qt6Network/Qt6NetworkTargets.cmake \
+	/home/dennis/Qt/6.9.0/gcc_64/lib/cmake/Qt6Network/Qt6NetworkVersionlessAliasTargets.cmake \
+	/home/dennis/Qt/6.9.0/gcc_64/lib/cmake/Qt6Network/Qt6QGlibNetworkInformationPluginAdditionalTargetInfo.cmake \
+	/home/dennis/Qt/6.9.0/gcc_64/lib/cmake/Qt6Network/Qt6QGlibNetworkInformationPluginConfig.cmake \
+	/home/dennis/Qt/6.9.0/gcc_64/lib/cmake/Qt6Network/Qt6QGlibNetworkInformationPluginTargets-relwithdebinfo.cmake \
+	/home/dennis/Qt/6.9.0/gcc_64/lib/cmake/Qt6Network/Qt6QGlibNetworkInformationPluginTargets.cmake \
+	/home/dennis/Qt/6.9.0/gcc_64/lib/cmake/Qt6Network/Qt6QNetworkManagerNetworkInformationPluginAdditionalTargetInfo.cmake \
+	/home/dennis/Qt/6.9.0/gcc_64/lib/cmake/Qt6Network/Qt6QNetworkManagerNetworkInformationPluginConfig.cmake \
+	/home/dennis/Qt/6.9.0/gcc_64/lib/cmake/Qt6Network/Qt6QNetworkManagerNetworkInformationPluginTargets-relwithdebinfo.cmake \
+	/home/dennis/Qt/6.9.0/gcc_64/lib/cmake/Qt6Network/Qt6QNetworkManagerNetworkInformationPluginTargets.cmake \
+	/home/dennis/Qt/6.9.0/gcc_64/lib/cmake/Qt6Network/Qt6QTlsBackendCertOnlyPluginAdditionalTargetInfo.cmake \
+	/home/dennis/Qt/6.9.0/gcc_64/lib/cmake/Qt6Network/Qt6QTlsBackendCertOnlyPluginConfig.cmake \
+	/home/dennis/Qt/6.9.0/gcc_64/lib/cmake/Qt6Network/Qt6QTlsBackendCertOnlyPluginTargets-relwithdebinfo.cmake \
+	/home/dennis/Qt/6.9.0/gcc_64/lib/cmake/Qt6Network/Qt6QTlsBackendCertOnlyPluginTargets.cmake \
+	/home/dennis/Qt/6.9.0/gcc_64/lib/cmake/Qt6Network/Qt6QTlsBackendOpenSSLPluginAdditionalTargetInfo.cmake \
+	/home/dennis/Qt/6.9.0/gcc_64/lib/cmake/Qt6Network/Qt6QTlsBackendOpenSSLPluginConfig.cmake \
+	/home/dennis/Qt/6.9.0/gcc_64/lib/cmake/Qt6Network/Qt6QTlsBackendOpenSSLPluginTargets-relwithdebinfo.cmake \
+	/home/dennis/Qt/6.9.0/gcc_64/lib/cmake/Qt6Network/Qt6QTlsBackendOpenSSLPluginTargets.cmake \
+	/home/dennis/Qt/6.9.0/gcc_64/lib/cmake/Qt6NetworkPrivate/Qt6NetworkPrivateAdditionalTargetInfo.cmake \
+	/home/dennis/Qt/6.9.0/gcc_64/lib/cmake/Qt6NetworkPrivate/Qt6NetworkPrivateConfig.cmake \
+	/home/dennis/Qt/6.9.0/gcc_64/lib/cmake/Qt6NetworkPrivate/Qt6NetworkPrivateConfigVersion.cmake \
+	/home/dennis/Qt/6.9.0/gcc_64/lib/cmake/Qt6NetworkPrivate/Qt6NetworkPrivateConfigVersionImpl.cmake \
+	/home/dennis/Qt/6.9.0/gcc_64/lib/cmake/Qt6NetworkPrivate/Qt6NetworkPrivateDependencies.cmake \
+	/home/dennis/Qt/6.9.0/gcc_64/lib/cmake/Qt6NetworkPrivate/Qt6NetworkPrivateTargets.cmake \
+	/home/dennis/Qt/6.9.0/gcc_64/lib/cmake/Qt6NetworkPrivate/Qt6NetworkPrivateVersionlessAliasTargets.cmake \
 	/home/dennis/Qt/6.9.0/gcc_64/lib/cmake/Qt6Widgets/Qt6WidgetsAdditionalTargetInfo.cmake \
 	/home/dennis/Qt/6.9.0/gcc_64/lib/cmake/Qt6Widgets/Qt6WidgetsConfig.cmake \
 	/home/dennis/Qt/6.9.0/gcc_64/lib/cmake/Qt6Widgets/Qt6WidgetsConfigVersion.cmake \
@@ -418,100 +465,25 @@ Graphics_autogen/timestamp: \
 	/home/dennis/Qt/6.9.0/gcc_64/lib/cmake/Qt6WidgetsTools/Qt6WidgetsToolsTargets-relwithdebinfo.cmake \
 	/home/dennis/Qt/6.9.0/gcc_64/lib/cmake/Qt6WidgetsTools/Qt6WidgetsToolsTargets.cmake \
 	/home/dennis/Qt/6.9.0/gcc_64/lib/cmake/Qt6WidgetsTools/Qt6WidgetsToolsVersionlessTargets.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/CMakeCCompiler.cmake.in \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/CMakeCCompilerABI.c \
 	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/CMakeCInformation.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/CMakeCXXCompiler.cmake.in \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/CMakeCXXCompilerABI.cpp \
 	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/CMakeCXXInformation.cmake \
 	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/CMakeCheckCompilerFlagCommonPatterns.cmake \
 	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/CMakeCommonLanguageInclude.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/CMakeCompilerIdDetection.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/CMakeDetermineCCompiler.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/CMakeDetermineCXXCompiler.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/CMakeDetermineCompiler.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/CMakeDetermineCompilerABI.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/CMakeDetermineCompilerId.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/CMakeDetermineCompilerSupport.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/CMakeDetermineSystem.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/CMakeFindBinUtils.cmake \
 	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/CMakeFindDependencyMacro.cmake \
 	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/CMakeGenericSystem.cmake \
 	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/CMakeInitializeConfigs.cmake \
 	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/CMakeLanguageInformation.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/CMakeParseImplicitIncludeInfo.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/CMakeParseImplicitLinkInfo.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/CMakeParseLibraryArchitecture.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/CMakeSystem.cmake.in \
 	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/CMakeSystemSpecificInformation.cmake \
 	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/CMakeSystemSpecificInitialize.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/CMakeTestCCompiler.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/CMakeTestCXXCompiler.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/CMakeTestCompilerCommon.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/CMakeUnixFindMake.cmake \
 	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/CheckCSourceCompiles.cmake \
 	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/CheckCXXCompilerFlag.cmake \
 	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/CheckCXXSourceCompiles.cmake \
 	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/CheckIncludeFile.cmake \
 	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/CheckLibraryExists.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Compiler/ADSP-DetermineCompiler.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Compiler/ARMCC-DetermineCompiler.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Compiler/ARMClang-DetermineCompiler.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Compiler/AppleClang-DetermineCompiler.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Compiler/Borland-DetermineCompiler.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Compiler/Bruce-C-DetermineCompiler.cmake \
 	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Compiler/CMakeCommonCompilerMacros.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Compiler/Clang-DetermineCompiler.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Compiler/Clang-DetermineCompilerInternal.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Compiler/Compaq-C-DetermineCompiler.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Compiler/Compaq-CXX-DetermineCompiler.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Compiler/Cray-DetermineCompiler.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Compiler/CrayClang-DetermineCompiler.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Compiler/Embarcadero-DetermineCompiler.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Compiler/Fujitsu-DetermineCompiler.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Compiler/FujitsuClang-DetermineCompiler.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Compiler/GHS-DetermineCompiler.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Compiler/GNU-C-DetermineCompiler.cmake \
 	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Compiler/GNU-C.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Compiler/GNU-CXX-DetermineCompiler.cmake \
 	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Compiler/GNU-CXX.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Compiler/GNU-FindBinUtils.cmake \
 	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Compiler/GNU.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Compiler/HP-C-DetermineCompiler.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Compiler/HP-CXX-DetermineCompiler.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Compiler/IAR-DetermineCompiler.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Compiler/IBMCPP-C-DetermineVersionInternal.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Compiler/IBMCPP-CXX-DetermineVersionInternal.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Compiler/IBMClang-C-DetermineCompiler.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Compiler/IBMClang-CXX-DetermineCompiler.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Compiler/Intel-DetermineCompiler.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Compiler/IntelLLVM-DetermineCompiler.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Compiler/LCC-C-DetermineCompiler.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Compiler/LCC-CXX-DetermineCompiler.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Compiler/MSVC-DetermineCompiler.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Compiler/NVHPC-DetermineCompiler.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Compiler/NVIDIA-DetermineCompiler.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Compiler/OpenWatcom-DetermineCompiler.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Compiler/OrangeC-DetermineCompiler.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Compiler/PGI-DetermineCompiler.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Compiler/PathScale-DetermineCompiler.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Compiler/SCO-DetermineCompiler.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Compiler/SDCC-C-DetermineCompiler.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Compiler/SunPro-C-DetermineCompiler.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Compiler/SunPro-CXX-DetermineCompiler.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Compiler/TI-DetermineCompiler.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Compiler/TIClang-DetermineCompiler.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Compiler/Tasking-DetermineCompiler.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Compiler/TinyCC-C-DetermineCompiler.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Compiler/VisualAge-C-DetermineCompiler.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Compiler/VisualAge-CXX-DetermineCompiler.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Compiler/Watcom-DetermineCompiler.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Compiler/XL-C-DetermineCompiler.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Compiler/XL-CXX-DetermineCompiler.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Compiler/XLClang-C-DetermineCompiler.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Compiler/XLClang-CXX-DetermineCompiler.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Compiler/zOS-C-DetermineCompiler.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Compiler/zOS-CXX-DetermineCompiler.cmake \
 	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/FeatureSummary.cmake \
 	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/FindOpenGL.cmake \
 	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/FindPackageHandleStandardArgs.cmake \
@@ -523,11 +495,9 @@ Graphics_autogen/timestamp: \
 	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Internal/CMakeCLinkerInformation.cmake \
 	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Internal/CMakeCXXLinkerInformation.cmake \
 	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Internal/CMakeCommonLinkerInformation.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Internal/CMakeDetermineLinkerId.cmake \
 	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Internal/CheckCompilerFlag.cmake \
 	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Internal/CheckFlagCommonConfig.cmake \
 	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Internal/CheckSourceCompiles.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Internal/FeatureTesting.cmake \
 	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Linker/GNU-C.cmake \
 	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Linker/GNU-CXX.cmake \
 	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Linker/GNU.cmake \
@@ -536,7 +506,6 @@ Graphics_autogen/timestamp: \
 	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Platform/Linker/Linux-GNU-C.cmake \
 	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Platform/Linker/Linux-GNU-CXX.cmake \
 	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Platform/Linker/Linux-GNU.cmake \
-	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Platform/Linux-Determine-CXX.cmake \
 	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Platform/Linux-GNU-C.cmake \
 	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Platform/Linux-GNU-CXX.cmake \
 	/snap/clion/341/bin/cmake/linux/x64/share/cmake-3.31/Modules/Platform/Linux-GNU.cmake \

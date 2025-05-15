@@ -3,12 +3,19 @@
 #include <QKeyEvent>
 #include <QTimerEvent>
 #include <QFont>
+#include <QTcpSocket>    // Nueva inclusión
+#include <QTimer>        // Nueva inclusión
+#include <QDebug>        // Para qDebug()
+#include <QAbstractSocket> // Para manejo de errores
 
 SquareWidget::SquareWidget(QWidget *parent)
-    : QWidget(parent)
+    : QWidget(parent),
+      tcpSocket(new QTcpSocket(this)),      // Inicializar socket
+      reconnectTimer(new QTimer(this))      // Inicializar timer
 {
     setFocusPolicy(Qt::StrongFocus);
 
+    // Cargar imágenes de autos
     carPixmapNormal.load("car.png");
     carPixmapSport.load("car2.png");
     carPixmapEmergency.load("car3.png");
@@ -17,7 +24,18 @@ SquareWidget::SquareWidget(QWidget *parent)
         qWarning("Uno o más iconos no se pudieron cargar.");
     }
 
+    // Configurar temporizador de animación
     startTimer(16); // Aproximadamente 60 FPS
+
+    // Configurar conexiones de red
+    connect(tcpSocket, &QTcpSocket::readyRead, this, &SquareWidget::readServerData);
+    connect(tcpSocket, QOverload<QAbstractSocket::SocketError>::of(&QAbstractSocket::errorOccurred),
+            this, &SquareWidget::handleSocketError);
+    connect(reconnectTimer, &QTimer::timeout, this, &SquareWidget::tryReconnect);
+
+    // Conectar al servidor (ajustar puerto según configuración del servidor)
+    tcpSocket->connectToHost("127.0.0.1", 8080);
+    reconnectTimer->start(5000); // Intentar reconexión cada 5 segundos
 }
 
 void SquareWidget::paintEvent(QPaintEvent *)
@@ -138,7 +156,6 @@ void SquareWidget::timerEvent(QTimerEvent * /* event */)
             it->xPos -= speed;
         }
 
-        // Si llegó a destino, lo eliminamos y liberamos paso
         if ((it->movingRight && it->xPos >= 900) ||
             (!it->movingRight && it->xPos <= 300)) {
             it = cars.erase(it);
@@ -148,9 +165,9 @@ void SquareWidget::timerEvent(QTimerEvent * /* event */)
             }
     }
 
-    // >>> AÑADE ESTA LÍNEA PARA REPINTAR SIEMPRE <<<
     update();
 }
+
 void SquareWidget::startCarFromLeft()
 {
     Car car = {300, 300, leftQueue.front(), true};
@@ -163,4 +180,29 @@ void SquareWidget::startCarFromRight()
     Car car = {900, 300, rightQueue.front(), false};
     cars.push_back(car);
     isCrossing = true;
+}
+
+// Nuevos métodos de manejo de red
+void SquareWidget::readServerData() {
+    qDebug() << "Bytes disponibles:" << tcpSocket->bytesAvailable();
+
+    while (tcpSocket->canReadLine()) {
+        QString message = tcpSocket->readLine().trimmed();
+        qDebug() << "Mensaje recibido:" << message;
+    }
+
+    qDebug() << "Fin de readServerData";
+}
+
+void SquareWidget::handleSocketError(QAbstractSocket::SocketError error) {
+    qWarning() << "Error de conexión:" << tcpSocket->errorString();
+    reconnectTimer->start();
+}
+
+void SquareWidget::tryReconnect() {
+    if (tcpSocket->state() != QAbstractSocket::ConnectedState) {
+        qDebug() << "Intentando reconexión...";
+        tcpSocket->abort();
+        tcpSocket->connectToHost("127.0.0.1", 8080);
+    }
 }

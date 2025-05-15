@@ -38,13 +38,13 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 16,
+				"line" : 17,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 19,
+				"line" : 20,
 				"parent" : 0
 			},
 			{
@@ -148,6 +148,10 @@
 				},
 				{
 					"backtrace" : 2,
+					"define" : "QT_NETWORK_LIB"
+				},
+				{
+					"backtrace" : 2,
 					"define" : "QT_WIDGETS_LIB"
 				}
 			],
@@ -182,6 +186,11 @@
 					"backtrace" : 2,
 					"isSystem" : true,
 					"path" : "/home/dennis/Qt/6.9.0/gcc_64/include/QtWidgets"
+				},
+				{
+					"backtrace" : 2,
+					"isSystem" : true,
+					"path" : "/home/dennis/Qt/6.9.0/gcc_64/include/QtNetwork"
 				}
 			],
 			"language" : "CXX",
@@ -232,6 +241,11 @@
 			{
 				"backtrace" : 2,
 				"fragment" : "/home/dennis/Qt/6.9.0/gcc_64/lib/libQt6Widgets.so.6.9.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "/home/dennis/Qt/6.9.0/gcc_64/lib/libQt6Network.so.6.9.0",
 				"role" : "libraries"
 			},
 			{

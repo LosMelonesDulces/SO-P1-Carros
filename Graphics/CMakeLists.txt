@@ -11,6 +11,7 @@ find_package(Qt6 COMPONENTS
         Core
         Gui
         Widgets
+        Network
         REQUIRED)
 
 add_executable(Graphics main.cpp
@@ -20,5 +21,6 @@ target_link_libraries(Graphics
         Qt::Core
         Qt::Gui
         Qt::Widgets
+        Qt6::Network
 )
 

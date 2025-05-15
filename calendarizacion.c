@@ -319,7 +319,7 @@ int main(int argc, char *argv[]) {
     if (server_is_client_connected()) {
         char mensaje[256];
         // Formatea tu mensaje (ej. estado de un carro)
-        sprintf(mensaje, "CARRO_ID:%d;ESTADO:CRUZANDO;LADO:%d", 5, 4);
+        sprintf(mensaje, "CARRO_ID:%d;ESTADO:CRUZANDO;LADO:%d\n", 5, 4);
         server_send_data_to_client(mensaje, strlen(mensaje));
     }
 

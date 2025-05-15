@@ -4,6 +4,7 @@
  mmc:Q_OBJECT
  mdp:/home/dennis/Escritorio/ProyectoOp/SO-P1-Carros/Graphics/Graphics_autogen/moc_predefs.h
  mdp:/home/dennis/Escritorio/ProyectoOp/SO-P1-Carros/Graphics/SquareWidget.h
+ mdp:/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/QTimer
  mdp:/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/q17memory.h
  mdp:/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/q20functional.h
  mdp:/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/q20iterator.h
@@ -11,6 +12,7 @@
  mdp:/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/q20type_traits.h
  mdp:/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/q20utility.h
  mdp:/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/q23utility.h
+ mdp:/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qabstracteventdispatcher.h
  mdp:/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qalgorithms.h
  mdp:/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qanystringview.h
  mdp:/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qarraydata.h
@@ -20,6 +22,7 @@
  mdp:/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qatomic.h
  mdp:/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qatomic_cxx11.h
  mdp:/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qbasicatomic.h
+ mdp:/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qbasictimer.h
  mdp:/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qbindingstorage.h
  mdp:/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qbytearray.h
  mdp:/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qbytearrayalgorithms.h
@@ -38,8 +41,11 @@
  mdp:/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qcontiguouscache.h
  mdp:/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qdarwinhelpers.h
  mdp:/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qdatastream.h
+ mdp:/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qdeadlinetimer.h
  mdp:/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qdebug.h
+ mdp:/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qelapsedtimer.h
  mdp:/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qendian.h
+ mdp:/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qeventloop.h
  mdp:/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qexceptionhandling.h
  mdp:/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qflags.h
  mdp:/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qfloat16.h
@@ -51,6 +57,7 @@
  mdp:/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qglobalstatic.h
  mdp:/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qhash.h
  mdp:/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qhashfunctions.h
+ mdp:/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qiodevice.h
  mdp:/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qiodevicebase.h
  mdp:/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qiterable.h
  mdp:/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qiterator.h
@@ -113,6 +120,7 @@
  mdp:/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtenvironmentvariables.h
  mdp:/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtextstream.h
  mdp:/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtformat_impl.h
+ mdp:/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtimer.h
  mdp:/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtmetamacros.h
  mdp:/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtnoop.h
  mdp:/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtpreprocessorsupport.h
@@ -155,6 +163,13 @@
  mdp:/home/dennis/Qt/6.9.0/gcc_64/include/QtGui/qtguiglobal.h
  mdp:/home/dennis/Qt/6.9.0/gcc_64/include/QtGui/qtransform.h
  mdp:/home/dennis/Qt/6.9.0/gcc_64/include/QtGui/qwindowdefs.h
+ mdp:/home/dennis/Qt/6.9.0/gcc_64/include/QtNetwork/QTcpSocket
+ mdp:/home/dennis/Qt/6.9.0/gcc_64/include/QtNetwork/qabstractsocket.h
+ mdp:/home/dennis/Qt/6.9.0/gcc_64/include/QtNetwork/qhostaddress.h
+ mdp:/home/dennis/Qt/6.9.0/gcc_64/include/QtNetwork/qtcpsocket.h
+ mdp:/home/dennis/Qt/6.9.0/gcc_64/include/QtNetwork/qtnetwork-config.h
+ mdp:/home/dennis/Qt/6.9.0/gcc_64/include/QtNetwork/qtnetworkexports.h
+ mdp:/home/dennis/Qt/6.9.0/gcc_64/include/QtNetwork/qtnetworkglobal.h
  mdp:/home/dennis/Qt/6.9.0/gcc_64/include/QtWidgets/QWidget
  mdp:/home/dennis/Qt/6.9.0/gcc_64/include/QtWidgets/qsizepolicy.h
  mdp:/home/dennis/Qt/6.9.0/gcc_64/include/QtWidgets/qtwidgets-config.h
