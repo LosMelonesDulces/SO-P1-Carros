@@ -276,6 +276,12 @@ int main(int argc, char *argv[]) {
     server_init(DEFAULT_PORT); // O el puerto que desees
     server_start_listening_thread(); // Inicia el servidor en un hilo separado
 
+    if (server_is_client_connected()) {
+        char mensaje[256];
+        // Formatea tu mensaje (ej. estado de un carro)
+        sprintf(mensaje, "CARRO_ID:%d;ESTADO:CRUZANDO;LADO:%d", 5, 4);
+        server_send_data_to_client(mensaje, strlen(mensaje));
+    }
 
     // Los valores por defecto se establecen en leer_configuracion si el archivo no existe
     // o dentro de leer_configuracion si ciertas claves no se encuentran.
@@ -316,12 +322,6 @@ int main(int argc, char *argv[]) {
         printf("INFO: Hilo de teclado (%d) ha terminado.\n", g_hilo_teclado_id);
     }
 
-    if (server_is_client_connected()) {
-        char mensaje[256];
-        // Formatea tu mensaje (ej. estado de un carro)
-        sprintf(mensaje, "CARRO_ID:%d;ESTADO:CRUZANDO;LADO:%d", 5, 4);
-        server_send_data_to_client(mensaje, strlen(mensaje));
-    }
 
     printf("INFO: Simulación principal terminada.\n");
 

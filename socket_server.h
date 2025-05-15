@@ -2,7 +2,8 @@
 #define SOCKET_SERVER_H
 
 #include <stdbool.h>
-#include <netinet/in.h> // Include this header for sockaddr_in
+#include <pthread.h>     // Para pthread_t y pthread_mutex_t
+#include <netinet/in.h>  // Para sockaddr_in
 
 #define DEFAULT_PORT 8080
 #define MAX_CLIENTS 1 // Para este ejemplo, manejaremos un solo cliente a la vez
@@ -15,9 +16,10 @@ typedef struct {
     bool is_connected;
 } client_info_t;
 
+
 // Funciones de la biblioteca del servidor
 void server_init(int port);
-void server_start_listening_thread(void); // Inicia el servidor en un nuevo cethread
+int server_start_listening_thread(void); // Inicia el servidor en un nuevo pthread
 void server_stop(void);
 bool server_is_client_connected(void);
 int server_send_data_to_client(const char *data, int length);
