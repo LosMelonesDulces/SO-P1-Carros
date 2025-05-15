@@ -1,0 +1,5 @@
+/home/dennis/Escritorio/ProyectoOp/SO-P1-Carros/Graphics/CMakeFiles/Graphics.dir
+/home/dennis/Escritorio/ProyectoOp/SO-P1-Carros/Graphics/CMakeFiles/edit_cache.dir
+/home/dennis/Escritorio/ProyectoOp/SO-P1-Carros/Graphics/CMakeFiles/rebuild_cache.dir
+/home/dennis/Escritorio/ProyectoOp/SO-P1-Carros/Graphics/CMakeFiles/Graphics_autogen_timestamp_deps.dir
+/home/dennis/Escritorio/ProyectoOp/SO-P1-Carros/Graphics/CMakeFiles/Graphics_autogen.dir

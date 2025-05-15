@@ -1,5 +1,0 @@
-/home/dennis/Escritorio/Graphics/cmake-build-debug/CMakeFiles/Graphics.dir
-/home/dennis/Escritorio/Graphics/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/dennis/Escritorio/Graphics/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/dennis/Escritorio/Graphics/cmake-build-debug/CMakeFiles/Graphics_autogen_timestamp_deps.dir
-/home/dennis/Escritorio/Graphics/cmake-build-debug/CMakeFiles/Graphics_autogen.dir
