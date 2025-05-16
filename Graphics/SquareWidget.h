@@ -30,10 +30,12 @@ private:
     enum CarType { Normal = 0, Sport = 1, Emergency = 2 };
 
     struct Car {
-        int xPos;
-        int yPos;
+        double xPos;
+        double yPos;
         CarType type;
         bool movingRight;
+        double secondsToCross;  // Tiempo de cruce en segundos
+        double vx;              // Velocidad en px/frame
     };
 
     // Networking
@@ -61,9 +63,9 @@ private:
     void parseInitialConfig(const QString &msg);
     void parseActionMessage(const QString &msg);
 
-    // Start helpers
-    void startCarFromLeft(CarType type);
-    void startCarFromRight(CarType type);
+    // Start helper
+    void startCarFromLeft(CarType type, double secondsToCross);
+    void startCarFromRight(CarType type, double secondsToCross);
 };
 
 #endif // SQUAREWIDGET_H
