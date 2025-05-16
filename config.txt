@@ -1,5 +1,5 @@
 algoritmo_flujo=EQUIDAD
-algoritmo_calendarizacion=RR
+algoritmo_calendarizacion=FCFS
 largo_calle=100
 velocidad_carros=20
 cantidad_carros=3
