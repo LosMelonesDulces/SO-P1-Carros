@@ -5,6 +5,7 @@
 #include <string.h> 
 #include "struct&enum.h" 
 #include "simulacion.h"
+#include "socket_server.h"
 
 // Variables globales externas (definidas en calendarizacion.c)
 extern ColaCarros cola_izquierda;
@@ -77,6 +78,12 @@ void *cruzar_calle(void *arg) {
         printf("Carro %d (Tipo: %d, Lado: %s, cethread_id: %d) comienza a cruzar. Tiempo: %d seg.\n",
             carro->id, carro->tipo, carro->lado == 0 ? "Izquierda" : "Derecha", carro->cethread_hilo_id, tiempo_cruce_calculado);
 
+        if (server_is_client_connected()) {
+        char mensaje[2048];
+        // Formatea tu mensaje (ej. estado de un carro)
+        sprintf(mensaje, "(%d, %d, %d)\n", carro->lado, carro->id, tiempo_cruce_calculado);
+        server_send_data_to_client(mensaje, strlen(mensaje));
+        }
         sleep(tiempo_cruce_calculado); 
         printf("Carro %d (Tipo: %d, Lado: %s) ha cruzado la calle.\n", carro->id, carro->tipo, carro->lado == 0 ? "Izquierda" : "Derecha");
     }
