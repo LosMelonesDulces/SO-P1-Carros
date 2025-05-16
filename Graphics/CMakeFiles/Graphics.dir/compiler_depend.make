@@ -4,6 +4,7 @@
 CMakeFiles/Graphics.dir/Graphics_autogen/mocs_compilation.cpp.o: Graphics_autogen/mocs_compilation.cpp \
   SquareWidget.h \
   Graphics_autogen/EWIEGA46WW/moc_SquareWidget.cpp \
+  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/QMap \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/QTimer \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/QVector \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/q17memory.h \
@@ -504,6 +505,7 @@ CMakeFiles/Graphics.dir/SquareWidget.cpp.o: SquareWidget.cpp \
   SquareWidget.h \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/QDebug \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/QList \
+  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/QMap \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/QObject \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/QRect \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/QSize \
@@ -1027,6 +1029,7 @@ CMakeFiles/Graphics.dir/SquareWidget.cpp.o: SquareWidget.cpp \
 
 CMakeFiles/Graphics.dir/main.cpp.o: main.cpp \
   SquareWidget.h \
+  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/QMap \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/QTimer \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/QVector \
   /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/q17memory.h \
@@ -1788,9 +1791,9 @@ SquareWidget.cpp:
 
 /usr/include/c++/11/ratio:
 
-/home/dennis/Qt/6.9.0/gcc_64/include/QtGui/qtguiglobal.h:
+/usr/include/features-time64.h:
 
-/usr/include/c++/11/bits/hashtable_policy.h:
+/usr/include/c++/11/pstl/pstl_config.h:
 
 /home/dennis/Qt/6.9.0/gcc_64/include/QtGui/qtguiexports.h:
 
@@ -2044,6 +2047,18 @@ SquareWidget.h:
 
 /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qmetatype.h:
 
+/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qalgorithms.h:
+
+/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qdatastream.h:
+
+/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtcoreglobal.h:
+
+/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qabstracteventdispatcher.h:
+
+/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qiodevicebase.h:
+
+/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/q20utility.h:
+
 /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qassert.h:
 
 /home/dennis/Qt/6.9.0/gcc_64/include/QtGui/qcolor.h:
@@ -2054,13 +2069,11 @@ SquareWidget.h:
 
 /usr/include/c++/11/functional:
 
-/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qdatastream.h:
+/usr/include/x86_64-linux-gnu/gnu/stubs.h:
 
-/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtcoreglobal.h:
+/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/q23type_traits.h:
 
-/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qabstracteventdispatcher.h:
-
-/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qalgorithms.h:
+/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qbasictimer.h:
 
 /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qswap.h:
 
@@ -2075,16 +2088,6 @@ SquareWidget.h:
 /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qtclasshelpermacros.h:
 
 /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/q20iterator.h:
-
-/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qbasictimer.h:
-
-/usr/include/x86_64-linux-gnu/gnu/stubs.h:
-
-/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/q23type_traits.h:
-
-/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qiodevicebase.h:
-
-/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/q20utility.h:
 
 /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qarraydata.h:
 
@@ -2241,6 +2244,10 @@ SquareWidget.h:
 /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qcontiguouscache.h:
 
 /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qobject.h:
+
+/home/dennis/Qt/6.9.0/gcc_64/include/QtGui/qtguiglobal.h:
+
+/usr/include/c++/11/bits/hashtable_policy.h:
 
 /usr/include/x86_64-linux-gnu/bits/types.h:
 
@@ -2404,6 +2411,8 @@ Graphics_autogen/mocs_compilation.cpp:
 
 /home/dennis/Qt/6.9.0/gcc_64/include/QtGui/QPixmap:
 
+/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/QMap:
+
 /usr/include/c++/11/bits/list.tcc:
 
 /home/dennis/Qt/6.9.0/gcc_64/include/QtGui/QFont:
@@ -2561,10 +2570,6 @@ Graphics_autogen/mocs_compilation.cpp:
 /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/qstringconverter.h:
 
 /usr/include/c++/11/ctime:
-
-/usr/include/features-time64.h:
-
-/usr/include/c++/11/pstl/pstl_config.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/stdint.h:
 

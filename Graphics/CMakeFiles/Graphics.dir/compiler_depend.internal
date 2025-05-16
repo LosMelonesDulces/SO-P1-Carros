@@ -5,6 +5,7 @@ CMakeFiles/Graphics.dir/Graphics_autogen/mocs_compilation.cpp.o
  /home/dennis/Escritorio/ProyectoOp/SO-P1-Carros/Graphics/Graphics_autogen/mocs_compilation.cpp
  /home/dennis/Escritorio/ProyectoOp/SO-P1-Carros/Graphics/SquareWidget.h
  /home/dennis/Escritorio/ProyectoOp/SO-P1-Carros/Graphics/Graphics_autogen/EWIEGA46WW/moc_SquareWidget.cpp
+ /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/QMap
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/QTimer
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/QVector
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/q17memory.h
@@ -506,6 +507,7 @@ CMakeFiles/Graphics.dir/SquareWidget.cpp.o
  /home/dennis/Escritorio/ProyectoOp/SO-P1-Carros/Graphics/SquareWidget.h
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/QDebug
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/QList
+ /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/QMap
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/QObject
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/QRect
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/QSize
@@ -1030,6 +1032,7 @@ CMakeFiles/Graphics.dir/SquareWidget.cpp.o
 CMakeFiles/Graphics.dir/main.cpp.o
  /home/dennis/Escritorio/ProyectoOp/SO-P1-Carros/Graphics/main.cpp
  /home/dennis/Escritorio/ProyectoOp/SO-P1-Carros/Graphics/SquareWidget.h
+ /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/QMap
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/QTimer
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/QVector
  /home/dennis/Qt/6.9.0/gcc_64/include/QtCore/q17memory.h

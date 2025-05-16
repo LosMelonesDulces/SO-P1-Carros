@@ -7,6 +7,7 @@ Graphics_autogen/timestamp: \
 	/home/dennis/Escritorio/ProyectoOp/SO-P1-Carros/Graphics/SquareWidget.cpp \
 	/home/dennis/Escritorio/ProyectoOp/SO-P1-Carros/Graphics/SquareWidget.h \
 	/home/dennis/Escritorio/ProyectoOp/SO-P1-Carros/Graphics/main.cpp \
+	/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/QMap \
 	/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/QTimer \
 	/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/QVector \
 	/home/dennis/Qt/6.9.0/gcc_64/include/QtCore/q17memory.h \

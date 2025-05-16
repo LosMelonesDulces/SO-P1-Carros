@@ -5,12 +5,12 @@
 #include <QWidget>
 #include <QPixmap>
 #include <QVector>
+#include <QMap>
 #include <QTcpSocket>
 #include <QTimer>
 #include <QAbstractSocket>
 
-class SquareWidget : public QWidget
-{
+class SquareWidget : public QWidget {
     Q_OBJECT
 
 public:
@@ -27,16 +27,15 @@ private slots:
     void tryReconnect();
 
 private:
-    enum CarType { Normal = 0, Sport = 1, Emergency = 2 };
+    enum CarType { Normal=0, Sport=1, Emergency=2 };
 
     struct Car {
-        double xPos;
-        double yPos;
+        int    id;
+        double xPos, yPos;
         CarType type;
         bool movingRight;
         double secondsToCross;
         double vx;
-        // Campos para RR parcial:
         bool   rr       = false;
         double targetX  = 0.0;
     };
@@ -46,29 +45,26 @@ private:
     QTimer*     reconnectTimer;
 
     // State
-    QVector<Car> cars;
-    bool         isCrossing = false;
+    QVector<Car>    cars;
+    bool            isCrossing = false;
 
     // Queues & IDs
-    QVector<CarType> leftQueue;
-    QVector<CarType> rightQueue;
-    QVector<int>     leftIds;
-    QVector<int>     rightIds;
+    QVector<CarType> leftQueue, rightQueue;
+    QVector<int>     leftIds, rightIds;
     int              roundRobinBit = 0;
 
+    // RR progress
+    QMap<int,double> rrProgress;
+
     // Pixmaps
-    QPixmap carPixmapNormal;
-    QPixmap carPixmapSport;
-    QPixmap carPixmapEmergency;
+    QPixmap carPixmapNormal, carPixmapSport, carPixmapEmergency;
     CarType selectedType = Normal;
 
-    // Parsing
+    // Helpers
     void parseInitialConfig(const QString &msg);
     void parseActionMessage(const QString &msg);
-
-    // Start normal crossings
-    void startCarFromLeft(CarType type, double secondsToCross);
-    void startCarFromRight(CarType type, double secondsToCross);
+    void startCarFromLeft(int carId, CarType type, double seconds);
+    void startCarFromRight(int carId, CarType type, double seconds);
 };
 
 #endif // SQUAREWIDGET_H
