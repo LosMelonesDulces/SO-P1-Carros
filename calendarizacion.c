@@ -132,7 +132,7 @@ void inicializar_simulacion() {
         for (int i = 0; i < configuracion.cantidad_carros / 2; i++) {
             Carro carro;
             carro.id = next_car_id++;
-            carro.tipo = NORMAL; // O aleatorio
+            carro.tipo = DEPORTIVO; // O aleatorio
             carro.lado = 0; // Izquierda
             carro.prioridad = rand() % 5 + 1;
             carro.tiempo_faltante = 0; // Inicializar tiempo_faltante
@@ -147,7 +147,7 @@ void inicializar_simulacion() {
         for (int i = configuracion.cantidad_carros / 2; i < configuracion.cantidad_carros; i++) {
             Carro carro;
             carro.id = next_car_id++;
-            carro.tipo = NORMAL; // O aleatorio
+            carro.tipo = EMERGENCIA; // O aleatorio
             carro.lado = 1; // Derecha
             carro.prioridad = rand() % 5 + 1;
             carro.tiempo_faltante = 0; // Inicializar tiempo_faltante
@@ -174,22 +174,33 @@ void inicializar_simulacion() {
     char ids_izquierda[256] = "";
     char ids_derecha[256] = "";
 
-    for (size_t i = 0; i < cola_izquierda.cantidad; i++)
-    {
-        sprintf(tipos_izquierda + strlen(tipos_izquierda), "%d, ", cola_izquierda.carros[i].tipo);
-        sprintf(ids_izquierda + strlen(tipos_derecha),"%d, ", cola_izquierda.carros[i].id);
+    // Construir tipos e IDs de la cola izquierda
+    for (size_t i = 0; i < cola_izquierda.cantidad; i++) {
+    // concatena al final de tipos_izquierda
+    sprintf(tipos_izquierda + strlen(tipos_izquierda), "%d, ",
+            cola_izquierda.carros[i].tipo);
+    // concatena al final de ids_izquierda
+    sprintf(ids_izquierda   + strlen(ids_izquierda),   "%d, ",
+            cola_izquierda.carros[i].id);
     }
 
-    for (size_t i = 0; i < cola_derecha.cantidad; i++)
-    {
-        sprintf(tipos_derecha + strlen(tipos_derecha), "%d, ", cola_derecha.carros[i].tipo);
-        sprintf(ids_derecha + strlen(ids_derecha), "%d, ", cola_derecha.carros[i].id);
+    // Construir tipos e IDs de la cola derecha
+    for (size_t i = 0; i < cola_derecha.cantidad; i++) {
+        sprintf(tipos_derecha + strlen(tipos_derecha), "%d, ",
+            cola_derecha.carros[i].tipo);
+        sprintf(ids_derecha   + strlen(ids_derecha),   "%d, ",
+            cola_derecha.carros[i].id);
     }
     
-    tipos_derecha[strlen(tipos_derecha) - 2] = '\0'; // Eliminar la última coma y espacio
-    tipos_izquierda[strlen(tipos_izquierda) - 2] = '\0'; // Eliminar la última coma y espacio
-    ids_derecha[strlen(ids_derecha) - 2] = '\0'; // Eliminar la última coma y espacio
-    ids_izquierda[strlen(ids_izquierda) - 2] = '\0'; // Eliminar la última coma y espacio
+    // Eliminar la última “, ”
+    if (cola_izquierda.cantidad > 0) {
+        tipos_izquierda[strlen(tipos_izquierda) - 2] = '\0';
+        ids_izquierda[strlen(ids_izquierda)     - 2] = '\0';
+    }
+    if (cola_derecha.cantidad > 0) {
+        tipos_derecha[strlen(tipos_derecha) - 2] = '\0';
+        ids_derecha[strlen(ids_derecha)     - 2] = '\0';
+    }
 
     // Enviar a la interfaz gráfica la configuración inicial
     if (server_is_client_connected()) {

@@ -1,56 +1,71 @@
+// SquareWidget.h
 #ifndef SQUAREWIDGET_H
 #define SQUAREWIDGET_H
 
 #include <QWidget>
 #include <QPixmap>
-#include <vector>
-#include <QTcpSocket>    // Nueva inclusión
-#include <QTimer>        // Nueva inclusión
+#include <QVector>
+#include <QTcpSocket>
+#include <QTimer>
+#include <QAbstractSocket>
 
 class SquareWidget : public QWidget
 {
     Q_OBJECT
 
 public:
-    SquareWidget(QWidget *parent = nullptr);
+    explicit SquareWidget(QWidget *parent = nullptr);
 
 protected:
     void paintEvent(QPaintEvent *event) override;
     void keyPressEvent(QKeyEvent *event) override;
     void timerEvent(QTimerEvent *event) override;
 
-private slots:  // Nueva sección de slots
-    void readServerData();          // Para leer datos del servidor
-    void handleSocketError(QAbstractSocket::SocketError error); // Manejar errores
-    void tryReconnect();            // Reconexión automática
+private slots:
+    void readServerData();
+    void handleSocketError(QAbstractSocket::SocketError error);
+    void tryReconnect();
 
 private:
-    enum CarType { Normal, Sport, Emergency };
+    enum CarType { Normal = 0, Sport = 1, Emergency = 2 };
 
     struct Car {
-        int xPos;
-        int yPos;
+        double xPos;
+        double yPos;
         CarType type;
         bool movingRight;
+        double secondsToCross;  // Tiempo de cruce en segundos
+        double vx;              // Velocidad en px/frame
     };
 
-    // Componentes de red añadidos
-    QTcpSocket *tcpSocket;  // Socket para comunicación
-    QTimer *reconnectTimer; // Temporizador para reconexión
+    // Networking
+    QTcpSocket *tcpSocket;
+    QTimer     *reconnectTimer;
 
-    // Miembros existentes
-    std::vector<Car> cars;
-    std::vector<CarType> leftQueue;
-    std::vector<CarType> rightQueue;
+    // Cars & state
+    QVector<Car> cars;
+    bool          isCrossing = false;
+
+    // Queues & IDs
+    QVector<CarType> leftQueue;
+    QVector<CarType> rightQueue;
+    QVector<int>     leftIds;
+    QVector<int>     rightIds;
+    int              roundRobinBit = 0;
+
+    // Pixmaps
     QPixmap carPixmapNormal;
     QPixmap carPixmapSport;
     QPixmap carPixmapEmergency;
     CarType selectedType = Normal;
-    bool isCrossing = false;
 
-    void initializeQueues();
-    void startCarFromLeft();
-    void startCarFromRight();
+    // Parsing
+    void parseInitialConfig(const QString &msg);
+    void parseActionMessage(const QString &msg);
+
+    // Start helper
+    void startCarFromLeft(CarType type, double secondsToCross);
+    void startCarFromRight(CarType type, double secondsToCross);
 };
 
 #endif // SQUAREWIDGET_H
