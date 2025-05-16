@@ -169,27 +169,31 @@ void inicializar_simulacion() {
         printf("INFO: Modo teclado activado.\n");
     }
 
-    char tipos_izquierda[256];
-    char tipos_derecha[256];
-    char ids_izquierda[256];
-    char ids_derecha[256];
+    char tipos_izquierda[256] = "";
+    char tipos_derecha[256] = "";
+    char ids_izquierda[256] = "";
+    char ids_derecha[256] = "";
 
     for (size_t i = 0; i < cola_izquierda.cantidad; i++)
     {
-        sprintf(tipos_izquierda + strlen(tipos_izquierda), "%d ", cola_izquierda.carros[i].tipo);
-        sprintf(ids_izquierda + strlen(ids_izquierda), "%d ", cola_izquierda.carros[i].id);
+        sprintf(tipos_izquierda + strlen(tipos_izquierda), "%d, ", cola_izquierda.carros[i].tipo);
+        sprintf(ids_izquierda + strlen(tipos_derecha),"%d, ", cola_izquierda.carros[i].id);
     }
 
     for (size_t i = 0; i < cola_derecha.cantidad; i++)
     {
-        sprintf(tipos_derecha + strlen(tipos_derecha), "%d ", cola_derecha.carros[i].tipo);
-        sprintf(ids_derecha + strlen(ids_derecha), "%d ", cola_derecha.carros[i].id);
+        sprintf(tipos_derecha + strlen(tipos_derecha), "%d, ", cola_derecha.carros[i].tipo);
+        sprintf(ids_derecha + strlen(ids_derecha), "%d, ", cola_derecha.carros[i].id);
     }
     
+    tipos_derecha[strlen(tipos_derecha) - 2] = '\0'; // Eliminar la última coma y espacio
+    tipos_izquierda[strlen(tipos_izquierda) - 2] = '\0'; // Eliminar la última coma y espacio
+    ids_derecha[strlen(ids_derecha) - 2] = '\0'; // Eliminar la última coma y espacio
+    ids_izquierda[strlen(ids_izquierda) - 2] = '\0'; // Eliminar la última coma y espacio
 
     // Enviar a la interfaz gráfica la configuración inicial
     if (server_is_client_connected()) {
-        char mensaje[256];
+        char mensaje[2048];
         // Formatea tu mensaje (ej. estado de un carro)
         sprintf(mensaje, "(%d, %d, %s, %s, %s, %s, %d)\n", 
                 cola_izquierda.cantidad, // Cantidad de carros en la cola izquierda
@@ -356,13 +360,6 @@ int main(int argc, char *argv[]) {
         // Como ya está la condición `if (configuracion.usar_teclado)` para crearlo, está bien.
         cethread_join(g_hilo_teclado_id, NULL);
         printf("INFO: Hilo de teclado (%d) ha terminado.\n", g_hilo_teclado_id);
-    }
-
-    if (server_is_client_connected()) {
-        char mensaje[256];
-        // Formatea tu mensaje (ej. estado de un carro)
-        sprintf(mensaje, "CARRO_ID:%d;ESTADO:CRUZANDO;LADO:%d\n", 5, 4);
-        server_send_data_to_client(mensaje, strlen(mensaje));
     }
 
     printf("INFO: Simulación principal terminada.\n");
