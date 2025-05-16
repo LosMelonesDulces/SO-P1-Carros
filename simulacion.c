@@ -78,6 +78,7 @@ void *cruzar_calle(void *arg) {
         printf("Carro %d (Tipo: %d, Lado: %s, cethread_id: %d) comienza a cruzar. Tiempo: %d seg.\n",
             carro->id, carro->tipo, carro->lado == 0 ? "Izquierda" : "Derecha", carro->cethread_hilo_id, tiempo_cruce_calculado);
 
+        printf("Servidor Status: %d\n", server_is_client_connected());
         if (server_is_client_connected()) {
         char mensaje[2048];
         // Formatea tu mensaje (ej. estado de un carro)
