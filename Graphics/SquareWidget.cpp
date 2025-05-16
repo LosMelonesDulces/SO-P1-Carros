@@ -13,15 +13,15 @@ SquareWidget::SquareWidget(QWidget *parent)
 {
     setFocusPolicy(Qt::StrongFocus);
 
-    // Cargar pixmaps (asegúrate de que existan estos ficheros)
+    // Load pixmaps
     carPixmapNormal.load("car.png");
     carPixmapSport.load("car2.png");
     carPixmapEmergency.load("car3.png");
 
-    // Repaint ~60 FPS
+    // 60 FPS repaint
     startTimer(16);
 
-    // Señales de red
+    // Network signals
     connect(tcpSocket, &QTcpSocket::readyRead, this, &SquareWidget::readServerData);
     connect(tcpSocket,
             QOverload<QAbstractSocket::SocketError>::of(&QAbstractSocket::errorOccurred),
@@ -32,7 +32,7 @@ SquareWidget::SquareWidget(QWidget *parent)
     reconnectTimer->start(5000);
 }
 
-void SquareWidget::handleSocketError(QAbstractSocket::SocketError /*error*/) {
+void SquareWidget::handleSocketError(QAbstractSocket::SocketError /*err*/) {
     qWarning() << "Error de conexión:" << tcpSocket->errorString();
     reconnectTimer->start(5000);
 }
@@ -50,7 +50,7 @@ void SquareWidget::readServerData() {
         QString message = tcpSocket->readLine().trimmed();
         qDebug() << "Mensaje recibido:" << message;
 
-        // Contar comas de nivel 1 para distinguir inicial vs acción
+        // Count top-level commas
         int level = 0, commas = 0;
         for (QChar c : message) {
             if (c == '(') ++level;
@@ -65,6 +65,15 @@ void SquareWidget::readServerData() {
 }
 
 void SquareWidget::parseInitialConfig(const QString &msg) {
+    // Helper to clean and split a parenthesized list
+    auto extract = [&](const QString &s) {
+        QString tmp = s;
+        tmp.remove('(').remove(')');
+        tmp = tmp.trimmed();
+        return tmp.split(',', Qt::SkipEmptyParts);
+    };
+
+    // Split at commas at level 1
     QStringList parts;
     QString token;
     int level = 0;
@@ -72,28 +81,29 @@ void SquareWidget::parseInitialConfig(const QString &msg) {
         if (c == '(') { ++level; if (level == 1) continue; }
         if (c == ')') { --level; if (level == 0) break; }
         if (c == ',' && level == 1) {
-            parts << token; token.clear();
+            parts << token;
+            token.clear();
         } else {
             token += c;
         }
     }
     parts << token;
 
-    // Extraer valores
-    // int leftCount = parts[0].toInt(); // opcional usar
-    // int rightCount = parts[1].toInt();
-    QStringList tLeft   = parts[2].mid(1, parts[2].length()-2).split(',', Qt::SkipEmptyParts);
-    QStringList tRight  = parts[3].mid(1, parts[3].length()-2).split(',', Qt::SkipEmptyParts);
-    QStringList idLeft  = parts[4].mid(1, parts[4].length()-2).split(',', Qt::SkipEmptyParts);
-    QStringList idRight = parts[5].mid(1, parts[5].length()-2).split(',', Qt::SkipEmptyParts);
-    roundRobinBit = parts[6].toInt();
+    // Extract
+    QStringList tLeft   = extract(parts[2]);
+    QStringList tRight  = extract(parts[3]);
+    QStringList idLeft  = extract(parts[4]);
+    QStringList idRight = extract(parts[5]);
+    roundRobinBit       = parts[6].toInt();
 
-    if (roundRobinBit == 1) {
-        qDebug() << "es round robin";
-    }
+    if (roundRobinBit == 1) qDebug() << "es round robin";
 
-    leftQueue.clear(); rightQueue.clear();
-    leftIds.clear();   rightIds.clear();
+    // Clear old
+    cars.clear();
+    leftQueue.clear();  rightQueue.clear();
+    leftIds.clear();    rightIds.clear();
+
+    // Populate
     for (auto &s : tLeft)   leftQueue.append(static_cast<CarType>(s.toInt()));
     for (auto &s : tRight)  rightQueue.append(static_cast<CarType>(s.toInt()));
     for (auto &s : idLeft)  leftIds.append(s.toInt());
@@ -108,44 +118,33 @@ void SquareWidget::parseActionMessage(const QString &msg) {
     QStringList f = clean.split(',', Qt::SkipEmptyParts);
     if (f.size() != 3) return;
 
-    int side  = f[0].toInt();    // 0=izq,1=der
+    int side  = f[0].toInt();
     int carId = f[1].toInt();
-    // int crossTime = f[2].toInt();
-
-    QVector<int>     &ids = (side == 0 ? leftIds  : rightIds);
-    QVector<CarType> &q   = (side == 0 ? leftQueue: rightQueue);
-
-    int idx = ids.indexOf(carId);
-    qDebug() << "[DEBUG] Acción recibida: side=" << side
-             << " carId=" << carId
-             << " idxEnCola=" << idx;
+    int idx   = (side == 0 ? leftIds.indexOf(carId)
+                          : rightIds.indexOf(carId));
+    qDebug() << "[DEBUG] Acción:" << side << carId << "idx=" << idx;
     if (idx < 0) return;
 
+    QVector<CarType> &q = (side == 0 ? leftQueue : rightQueue);
     CarType type = q.at(idx);
-    qDebug() << "[DEBUG] Tipo de coche extraído:" << type;
 
-    if (side == 0) {
-        startCarFromLeft(type);
-    } else {
-        startCarFromRight(type);
-    }
+    if (side == 0) startCarFromLeft(type);
+    else          startCarFromRight(type);
 
-    // Elimino de la cola
     q.removeAt(idx);
-    ids.removeAt(idx);
+    if (side == 0) leftIds.removeAt(idx);
+    else           rightIds.removeAt(idx);
 
-    // Fuerzo repintado inmediato
     update();
 }
 
-
 void SquareWidget::startCarFromLeft(CarType type) {
-    cars.append({300, 300, type, true});
+    cars.append({300,300,type,true});
     isCrossing = true;
 }
 
 void SquareWidget::startCarFromRight(CarType type) {
-    cars.append({900, 300, type, false});
+    cars.append({900,300,type,false});
     isCrossing = true;
 }
 
@@ -153,35 +152,29 @@ void SquareWidget::paintEvent(QPaintEvent *) {
     QPainter painter(this);
     painter.fillRect(rect(), Qt::white);
 
-    // Dibujo de caminos
     painter.setPen(QPen(Qt::black,4));
     painter.drawLine(300,200,900,200);
     painter.drawLine(300,400,900,400);
 
-    // Dibujo de autos en cruce
     for (auto &c : cars) {
         QPixmap pm = (c.type==Sport?carPixmapSport:
                       c.type==Emergency?carPixmapEmergency:carPixmapNormal);
-        if (!c.movingRight)
-            pm = pm.transformed(QTransform().scale(-1,1));
-        painter.drawPixmap(c.xPos, c.yPos,50,50,pm);
+        if (!c.movingRight) pm = pm.transformed(QTransform().scale(-1,1));
+        painter.drawPixmap(c.xPos,c.yPos,50,50,pm);
     }
 
-    // Colas izquierda
     for (int i=0; i<leftQueue.size(); ++i) {
         QPixmap pm = (leftQueue[i]==Sport?carPixmapSport:
                       leftQueue[i]==Emergency?carPixmapEmergency:carPixmapNormal);
-        painter.drawPixmap(150,300 - i*55,50,50,pm);
+        painter.drawPixmap(150,300-i*55,50,50,pm);
     }
-    // Colas derecha
     for (int i=0; i<rightQueue.size(); ++i) {
         QPixmap pm = (rightQueue[i]==Sport?carPixmapSport:
                       rightQueue[i]==Emergency?carPixmapEmergency:carPixmapNormal);
         pm = pm.transformed(QTransform().scale(-1,1));
-        painter.drawPixmap(1050,300 - i*55,50,50,pm);
+        painter.drawPixmap(1050,300-i*55,50,50,pm);
     }
 
-    // Indicador de tipo seleccionado
     painter.setFont(QFont("Arial",12));
     painter.setPen(Qt::black);
     painter.drawText(50,50,"Tipo seleccionado:");
@@ -190,8 +183,7 @@ void SquareWidget::paintEvent(QPaintEvent *) {
     painter.drawPixmap(200,25,50,50,sel);
     painter.drawText(260,50,
         selectedType==Sport?"Sport":
-        selectedType==Emergency?"Emergency":"Normal"
-    );
+        selectedType==Emergency?"Emergency":"Normal");
 }
 
 void SquareWidget::keyPressEvent(QKeyEvent *e) {
@@ -199,17 +191,16 @@ void SquareWidget::keyPressEvent(QKeyEvent *e) {
         case Qt::Key_N: selectedType = Normal;    break;
         case Qt::Key_S: selectedType = Sport;     break;
         case Qt::Key_E: selectedType = Emergency; break;
-        // Ya no manejamos A/D/Space/X si todo viene del servidor
         default: QWidget::keyPressEvent(e);
     }
     update();
 }
 
 void SquareWidget::timerEvent(QTimerEvent *) {
-    for (int i = cars.size()-1; i>=0; --i) {
+    for (int i=cars.size()-1; i>=0; --i) {
         auto &c = cars[i];
         int speed = (c.type==Sport?10:5);
-        c.xPos += c.movingRight? speed : -speed;
+        c.xPos += c.movingRight?speed:-speed;
         if ((c.movingRight && c.xPos>=900) ||
             (!c.movingRight && c.xPos<=300)) {
             cars.removeAt(i);

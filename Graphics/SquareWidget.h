@@ -36,32 +36,32 @@ private:
         bool movingRight;
     };
 
-    // — Networking —
+    // Networking
     QTcpSocket *tcpSocket;
     QTimer     *reconnectTimer;
 
-    // — Cars & state —
-    QVector<Car>    cars;
-    bool            isCrossing = false;
+    // Cars & state
+    QVector<Car> cars;
+    bool          isCrossing = false;
 
-    // — Queues & IDs —
+    // Queues & IDs
     QVector<CarType> leftQueue;
     QVector<CarType> rightQueue;
     QVector<int>     leftIds;
     QVector<int>     rightIds;
     int              roundRobinBit = 0;
 
-    // — Pixmaps —
+    // Pixmaps
     QPixmap carPixmapNormal;
     QPixmap carPixmapSport;
     QPixmap carPixmapEmergency;
     CarType selectedType = Normal;
 
-    // — Parsing helpers —
+    // Parsing
     void parseInitialConfig(const QString &msg);
     void parseActionMessage(const QString &msg);
 
-    // — Start helpers —
+    // Start helpers
     void startCarFromLeft(CarType type);
     void startCarFromRight(CarType type);
 };
