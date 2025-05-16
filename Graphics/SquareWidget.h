@@ -34,17 +34,20 @@ private:
         double yPos;
         CarType type;
         bool movingRight;
-        double secondsToCross;  // Tiempo de cruce en segundos
-        double vx;              // Velocidad en px/frame
+        double secondsToCross;
+        double vx;
+        // Campos para RR parcial:
+        bool   rr       = false;
+        double targetX  = 0.0;
     };
 
     // Networking
-    QTcpSocket *tcpSocket;
-    QTimer     *reconnectTimer;
+    QTcpSocket* tcpSocket;
+    QTimer*     reconnectTimer;
 
-    // Cars & state
+    // State
     QVector<Car> cars;
-    bool          isCrossing = false;
+    bool         isCrossing = false;
 
     // Queues & IDs
     QVector<CarType> leftQueue;
@@ -63,7 +66,7 @@ private:
     void parseInitialConfig(const QString &msg);
     void parseActionMessage(const QString &msg);
 
-    // Start helper
+    // Start normal crossings
     void startCarFromLeft(CarType type, double secondsToCross);
     void startCarFromRight(CarType type, double secondsToCross);
 };
