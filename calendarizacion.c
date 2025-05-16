@@ -132,7 +132,7 @@ void inicializar_simulacion() {
         for (int i = 0; i < configuracion.cantidad_carros / 2; i++) {
             Carro carro;
             carro.id = next_car_id++;
-            carro.tipo = DEPORTIVO; // O aleatorio
+            carro.tipo = rand()%3; // O aleatorio
             carro.lado = 0; // Izquierda
             carro.prioridad = rand() % 5 + 1;
             carro.tiempo_faltante = 0; // Inicializar tiempo_faltante
@@ -147,7 +147,7 @@ void inicializar_simulacion() {
         for (int i = configuracion.cantidad_carros / 2; i < configuracion.cantidad_carros; i++) {
             Carro carro;
             carro.id = next_car_id++;
-            carro.tipo = EMERGENCIA; // O aleatorio
+            carro.tipo = rand()%3; // O aleatorio
             carro.lado = 1; // Derecha
             carro.prioridad = rand() % 5 + 1;
             carro.tiempo_faltante = 0; // Inicializar tiempo_faltante
