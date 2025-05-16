@@ -1,8 +1,8 @@
-algoritmo_flujo=EQUIDAD
+algoritmo_flujo=FIFO
 algoritmo_calendarizacion=RR
 largo_calle=100
 velocidad_carros=20
-cantidad_carros=5
+cantidad_carros=7
 tiempo_cambio_letrero=10
 w=3
 usar_teclado=false
