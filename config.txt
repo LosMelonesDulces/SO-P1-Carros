@@ -1,9 +1,9 @@
-algoritmo_flujo=EQUIDAD
+algoritmo_flujo=LETRERO
 algoritmo_calendarizacion=FCFS
 largo_calle=100
 velocidad_carros=20
 cantidad_carros=5
-tiempo_cambio_letrero=5
+tiempo_cambio_letrero=10
 w=3
 usar_teclado=false
 tiempo_maximo_cruce_emergencia = 10
