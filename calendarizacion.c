@@ -195,7 +195,7 @@ void inicializar_simulacion() {
     if (server_is_client_connected()) {
         char mensaje[2048];
         // Formatea tu mensaje (ej. estado de un carro)
-        sprintf(mensaje, "(%d, %d, %s, %s, %s, %s, %d)\n", 
+        sprintf(mensaje, "(%d, %d, (%s), (%s), (%s), (%s), %d)\n", 
                 cola_izquierda.cantidad, // Cantidad de carros en la cola izquierda
                 cola_derecha.cantidad,   // Cantidad de carros en la cola derecha
                 tipos_izquierda, // Tipos de carros en la cola izquierda
