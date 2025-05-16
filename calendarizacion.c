@@ -169,6 +169,39 @@ void inicializar_simulacion() {
         printf("INFO: Modo teclado activado.\n");
     }
 
+    char tipos_izquierda[256];
+    char tipos_derecha[256];
+    char ids_izquierda[256];
+    char ids_derecha[256];
+
+    for (size_t i = 0; i < cola_izquierda.cantidad; i++)
+    {
+        sprintf(tipos_izquierda + strlen(tipos_izquierda), "%d ", cola_izquierda.carros[i].tipo);
+        sprintf(ids_izquierda + strlen(ids_izquierda), "%d ", cola_izquierda.carros[i].id);
+    }
+
+    for (size_t i = 0; i < cola_derecha.cantidad; i++)
+    {
+        sprintf(tipos_derecha + strlen(tipos_derecha), "%d ", cola_derecha.carros[i].tipo);
+        sprintf(ids_derecha + strlen(ids_derecha), "%d ", cola_derecha.carros[i].id);
+    }
+    
+
+    // Enviar a la interfaz gráfica la configuración inicial
+    if (server_is_client_connected()) {
+        char mensaje[256];
+        // Formatea tu mensaje (ej. estado de un carro)
+        sprintf(mensaje, "(%d, %d, %s, %s, %s, %s, %d)\n", 
+                cola_izquierda.cantidad, // Cantidad de carros en la cola izquierda
+                cola_derecha.cantidad,   // Cantidad de carros en la cola derecha
+                tipos_izquierda, // Tipos de carros en la cola izquierda
+                tipos_derecha,   // Tipos de carros en la cola derecha
+                ids_izquierda,   // IDs de los carros en la cola izquierda
+                ids_derecha,     // IDs de los carros en la cola derecha
+                configuracion.algoritmo_calendarizacion == RR);
+        server_send_data_to_client(mensaje, strlen(mensaje));
+    }
+
 
     // Crear el hilo de simulación
     if (cethread_create(&g_hilo_simulacion_id, simulacion, NULL) != 0) {
@@ -279,12 +312,12 @@ int main(int argc, char *argv[]) {
     printf("Presione cualquier tecla para continuar...\n");
     getchar();
 
-    if (server_is_client_connected()) {
-        char mensaje[256];
-        // Formatea tu mensaje (ej. estado de un carro)
-        sprintf(mensaje, "CARRO_ID:%d;ESTADO:CRUZANDO;LADO:%d \n", 5, 4);
-        server_send_data_to_client(mensaje, strlen(mensaje));
-    }
+    // if (server_is_client_connected()) {
+    //     char mensaje[256];
+    //     // Formatea tu mensaje (ej. estado de un carro)
+    //     sprintf(mensaje, "CARRO_ID:%d;ESTADO:CRUZANDO;LADO:%d \n", 5, 4);
+    //     server_send_data_to_client(mensaje, strlen(mensaje));
+    // }
 
     // Los valores por defecto se establecen en leer_configuracion si el archivo no existe
     // o dentro de leer_configuracion si ciertas claves no se encuentran.
